@@ -2132,3 +2132,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:nuget/System\.Threading\.Tasks\.Extensions@.*$</packageUrl>
    <cpe>cpe:/a:tasks:tasks</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7339
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.splunk\.logging/splunk-library-javalogging@.*$</packageUrl>
+   <cpe>cpe:/a:splunk:splunk</cpe>
+</suppress>
