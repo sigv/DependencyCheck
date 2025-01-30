@@ -206,76 +206,86 @@ public final class Downloader {
 <span class="fc" id="L206">        tryAddHostedSuppressionCredentials();</span>
 <span class="fc" id="L207">        tryAddKEVCredentials();</span>
 <span class="fc" id="L208">        tryAddNexusAnalyzerCredentials();</span>
-<span class="fc" id="L209">        tryAddCentralAnalyzerCredentials();</span>
-<span class="fc" id="L210">        tryAddCentralContentCredentials();</span>
-<span class="fc" id="L211">        tryAddNVDApiDatafeed();</span>
-<span class="fc" id="L212">        httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);</span>
-<span class="fc" id="L213">        httpClientBuilderExplicitNoproxy.setDefaultCredentialsProvider(credentialsProvider);</span>
-<span class="fc" id="L214">    }</span>
+<span class="fc" id="L209">        tryAddArtifactoryCredentials();</span>
+<span class="fc" id="L210">        tryAddCentralAnalyzerCredentials();</span>
+<span class="fc" id="L211">        tryAddCentralContentCredentials();</span>
+<span class="fc" id="L212">        tryAddNVDApiDatafeed();</span>
+<span class="fc" id="L213">        httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);</span>
+<span class="fc" id="L214">        httpClientBuilderExplicitNoproxy.setDefaultCredentialsProvider(credentialsProvider);</span>
+<span class="fc" id="L215">    }</span>
 
     private void tryAddRetireJSCredentials() throws InvalidSettingException {
-<span class="pc bpc" id="L217" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_URL, &quot;&quot;).isBlank()) {</span>
-<span class="fc" id="L218">            configureCredentials(Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_URL, &quot;RetireJS repo.js&quot;,</span>
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_URL, &quot;&quot;).isBlank()) {</span>
+<span class="fc" id="L219">            configureCredentials(Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_URL, &quot;RetireJS repo.js&quot;,</span>
                     Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_USER, Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_PASSWORD,
                     Settings.KEYS.ANALYZER_RETIREJS_REPO_JS_BEARER_TOKEN
                     );
         }
-<span class="fc" id="L223">    }</span>
+<span class="fc" id="L224">    }</span>
 
     private void tryAddHostedSuppressionCredentials() throws InvalidSettingException {
-<span class="pc bpc" id="L226" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.HOSTED_SUPPRESSIONS_URL, &quot;&quot;).isBlank()) {</span>
-<span class="nc" id="L227">            configureCredentials(Settings.KEYS.HOSTED_SUPPRESSIONS_URL, &quot;Hosted suppressions&quot;,</span>
+<span class="pc bpc" id="L227" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.HOSTED_SUPPRESSIONS_URL, &quot;&quot;).isBlank()) {</span>
+<span class="nc" id="L228">            configureCredentials(Settings.KEYS.HOSTED_SUPPRESSIONS_URL, &quot;Hosted suppressions&quot;,</span>
                     Settings.KEYS.HOSTED_SUPPRESSIONS_USER, Settings.KEYS.HOSTED_SUPPRESSIONS_PASSWORD,
                     Settings.KEYS.HOSTED_SUPPRESSIONS_BEARER_TOKEN
             );
         }
-<span class="fc" id="L232">    }</span>
+<span class="fc" id="L233">    }</span>
 
     private void tryAddKEVCredentials() throws InvalidSettingException {
-<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.KEV_URL, &quot;&quot;).isBlank()) {</span>
-<span class="fc" id="L236">            configureCredentials(Settings.KEYS.KEV_URL, &quot;Known Exploited Vulnerabilities&quot;,</span>
+<span class="pc bpc" id="L236" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.KEV_URL, &quot;&quot;).isBlank()) {</span>
+<span class="fc" id="L237">            configureCredentials(Settings.KEYS.KEV_URL, &quot;Known Exploited Vulnerabilities&quot;,</span>
                     Settings.KEYS.KEV_USER, Settings.KEYS.KEV_PASSWORD,
                     Settings.KEYS.KEV_BEARER_TOKEN
             );
         }
-<span class="fc" id="L241">    }</span>
+<span class="fc" id="L242">    }</span>
 
     private void tryAddNexusAnalyzerCredentials() throws InvalidSettingException {
-<span class="pc bpc" id="L244" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_NEXUS_URL, &quot;&quot;).isBlank()) {</span>
-<span class="fc" id="L245">            configureCredentials(Settings.KEYS.ANALYZER_NEXUS_URL, &quot;Nexus Analyzer&quot;,</span>
+<span class="pc bpc" id="L245" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_NEXUS_URL, &quot;&quot;).isBlank()) {</span>
+<span class="fc" id="L246">            configureCredentials(Settings.KEYS.ANALYZER_NEXUS_URL, &quot;Nexus Analyzer&quot;,</span>
                     Settings.KEYS.ANALYZER_NEXUS_USER, Settings.KEYS.ANALYZER_NEXUS_PASSWORD,
                     null
             );
         }
-<span class="fc" id="L250">    }</span>
+<span class="fc" id="L251">    }</span>
 
     private void tryAddCentralAnalyzerCredentials() throws InvalidSettingException {
-<span class="pc bpc" id="L253" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_CENTRAL_URL, &quot;&quot;).isBlank()) {</span>
-<span class="fc" id="L254">            configureCredentials(Settings.KEYS.ANALYZER_CENTRAL_URL, &quot;Central Analyzer&quot;,</span>
+<span class="pc bpc" id="L254" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_CENTRAL_URL, &quot;&quot;).isBlank()) {</span>
+<span class="fc" id="L255">            configureCredentials(Settings.KEYS.ANALYZER_CENTRAL_URL, &quot;Central Analyzer&quot;,</span>
                     Settings.KEYS.ANALYZER_CENTRAL_USER, Settings.KEYS.ANALYZER_CENTRAL_PASSWORD,
                     Settings.KEYS.ANALYZER_CENTRAL_BEARER_TOKEN
             );
         }
-<span class="fc" id="L259">    }</span>
+<span class="fc" id="L260">    }</span>
+
+    private void tryAddArtifactoryCredentials() throws InvalidSettingException {
+<span class="pc bpc" id="L263" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.ANALYZER_ARTIFACTORY_URL, &quot;&quot;).isBlank()) {</span>
+<span class="nc" id="L264">            configureCredentials(Settings.KEYS.ANALYZER_ARTIFACTORY_URL, &quot;Artifactory Analyzer&quot;,</span>
+                    Settings.KEYS.ANALYZER_ARTIFACTORY_API_USERNAME, Settings.KEYS.ANALYZER_ARTIFACTORY_API_TOKEN,
+                    Settings.KEYS.ANALYZER_ARTIFACTORY_BEARER_TOKEN
+            );
+        }
+<span class="fc" id="L269">    }</span>
 
     private void tryAddCentralContentCredentials() throws InvalidSettingException {
-<span class="pc bpc" id="L262" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.CENTRAL_CONTENT_URL, &quot;&quot;).isBlank()) {</span>
-<span class="fc" id="L263">            configureCredentials(Settings.KEYS.CENTRAL_CONTENT_URL, &quot;Central Content&quot;,</span>
+<span class="pc bpc" id="L272" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.CENTRAL_CONTENT_URL, &quot;&quot;).isBlank()) {</span>
+<span class="fc" id="L273">            configureCredentials(Settings.KEYS.CENTRAL_CONTENT_URL, &quot;Central Content&quot;,</span>
                     Settings.KEYS.CENTRAL_CONTENT_USER, Settings.KEYS.CENTRAL_CONTENT_PASSWORD,
                     Settings.KEYS.CENTRAL_CONTENT_BEARER_TOKEN
 
             );
         }
-<span class="fc" id="L269">    }</span>
+<span class="fc" id="L279">    }</span>
 
     private void tryAddNVDApiDatafeed() throws InvalidSettingException {
-<span class="pc bpc" id="L272" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.NVD_API_DATAFEED_URL, &quot;&quot;).isBlank()) {</span>
-<span class="nc" id="L273">            configureCredentials(Settings.KEYS.NVD_API_DATAFEED_URL, &quot;NVD API Datafeed&quot;,</span>
+<span class="pc bpc" id="L282" title="1 of 2 branches missed.">        if (!settings.getString(Settings.KEYS.NVD_API_DATAFEED_URL, &quot;&quot;).isBlank()) {</span>
+<span class="nc" id="L283">            configureCredentials(Settings.KEYS.NVD_API_DATAFEED_URL, &quot;NVD API Datafeed&quot;,</span>
                     Settings.KEYS.NVD_API_DATAFEED_USER, Settings.KEYS.NVD_API_DATAFEED_PASSWORD,
                     Settings.KEYS.NVD_API_DATAFEED_BEARER_TOKEN
             );
         }
-<span class="fc" id="L278">    }</span>
+<span class="fc" id="L288">    }</span>
 
     /**
      * Configure pre-emptive credentials for the host/port of the URL when configured in settings for the default credential-store and
@@ -292,12 +302,12 @@ public final class Downloader {
             throws InvalidSettingException {
         final URL theURL;
         try {
-<span class="fc" id="L295">            theURL = new URL(settings.getString(urlKey, &quot;&quot;));</span>
-<span class="nc" id="L296">        } catch (MalformedURLException e) {</span>
-<span class="nc" id="L297">            throw new InvalidSettingException(scopeDescription + &quot; URL must be a valid URL (was: &quot; + settings.getString(urlKey, &quot;&quot;) + &quot;)&quot;, e);</span>
-<span class="fc" id="L298">        }</span>
-<span class="fc" id="L299">        configureCredentials(theURL, scopeDescription, userKey, passwordKey, tokenKey, credentialsProvider, authCache);</span>
-<span class="fc" id="L300">    }</span>
+<span class="fc" id="L305">            theURL = new URL(settings.getString(urlKey, &quot;&quot;));</span>
+<span class="nc" id="L306">        } catch (MalformedURLException e) {</span>
+<span class="nc" id="L307">            throw new InvalidSettingException(scopeDescription + &quot; URL must be a valid URL (was: &quot; + settings.getString(urlKey, &quot;&quot;) + &quot;)&quot;, e);</span>
+<span class="fc" id="L308">        }</span>
+<span class="fc" id="L309">        configureCredentials(theURL, scopeDescription, userKey, passwordKey, tokenKey, credentialsProvider, authCache);</span>
+<span class="fc" id="L310">    }</span>
 
     /**
      * Configure pre-emptive credentials for the host/port of the URL when configured in settings for a specific credential-store and
@@ -315,33 +325,33 @@ public final class Downloader {
     private void configureCredentials(URL theURL, String scopeDescription, String userKey, String passwordKey, String tokenKey,
                                       CredentialsStore theCredentialsStore, AuthCache theAuthCache)
             throws InvalidSettingException {
-<span class="fc" id="L318">        final String theUser = settings.getString(userKey);</span>
-<span class="fc" id="L319">        final String thePass = settings.getString(passwordKey);</span>
-<span class="fc bfc" id="L320" title="All 2 branches covered.">        final String theToken = tokenKey != null ? settings.getString(tokenKey) : null;</span>
-<span class="pc bpc" id="L321" title="3 of 6 branches missed.">        if (theUser == null &amp;&amp; thePass == null &amp;&amp; theToken == null) {</span>
+<span class="fc" id="L328">        final String theUser = settings.getString(userKey);</span>
+<span class="fc" id="L329">        final String thePass = settings.getString(passwordKey);</span>
+<span class="fc bfc" id="L330" title="All 2 branches covered.">        final String theToken = tokenKey != null ? settings.getString(tokenKey) : null;</span>
+<span class="pc bpc" id="L331" title="3 of 6 branches missed.">        if (theUser == null &amp;&amp; thePass == null &amp;&amp; theToken == null) {</span>
             // no credentials configured
-<span class="fc" id="L323">            return;</span>
+<span class="fc" id="L333">            return;</span>
         }
-<span class="nc" id="L325">        final String theProtocol = theURL.getProtocol();</span>
-<span class="nc bnc" id="L326" title="All 2 branches missed.">        if (&quot;file&quot;.equals(theProtocol)) {</span>
+<span class="nc" id="L335">        final String theProtocol = theURL.getProtocol();</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">        if (&quot;file&quot;.equals(theProtocol)) {</span>
             // no credentials support for file protocol
-<span class="nc" id="L328">            return;</span>
-<span class="nc bnc" id="L329" title="All 6 branches missed.">        } else if (&quot;http&quot;.equals(theProtocol) &amp;&amp; (theUser != null &amp;&amp; thePass != null)) {</span>
-<span class="nc" id="L330">            LOGGER.warn(&quot;Insecure configuration: Basic Credentials are configured to be used over a plain http connection for {}. &quot;</span>
+<span class="nc" id="L338">            return;</span>
+<span class="nc bnc" id="L339" title="All 6 branches missed.">        } else if (&quot;http&quot;.equals(theProtocol) &amp;&amp; (theUser != null &amp;&amp; thePass != null)) {</span>
+<span class="nc" id="L340">            LOGGER.warn(&quot;Insecure configuration: Basic Credentials are configured to be used over a plain http connection for {}. &quot;</span>
                     + &quot;Consider migrating to https to guard the credentials.&quot;, scopeDescription);
-<span class="nc bnc" id="L332" title="All 4 branches missed.">        } else if (&quot;http&quot;.equals(theProtocol) &amp;&amp; (theToken != null)) {</span>
-<span class="nc" id="L333">            LOGGER.warn(&quot;Insecure configuration: Bearer Credentials are configured to be used over a plain http connection for {}. &quot;</span>
+<span class="nc bnc" id="L342" title="All 4 branches missed.">        } else if (&quot;http&quot;.equals(theProtocol) &amp;&amp; (theToken != null)) {</span>
+<span class="nc" id="L343">            LOGGER.warn(&quot;Insecure configuration: Bearer Credentials are configured to be used over a plain http connection for {}. &quot;</span>
                     + &quot;Consider migrating to https to guard the credentials.&quot;, scopeDescription);
-<span class="nc bnc" id="L335" title="All 2 branches missed.">        } else if (!&quot;https&quot;.equals(theProtocol)) {</span>
-<span class="nc" id="L336">            throw new InvalidSettingException(&quot;Unsupported protocol in the &quot; + scopeDescription</span>
+<span class="nc bnc" id="L345" title="All 2 branches missed.">        } else if (!&quot;https&quot;.equals(theProtocol)) {</span>
+<span class="nc" id="L346">            throw new InvalidSettingException(&quot;Unsupported protocol in the &quot; + scopeDescription</span>
                     + &quot; URL; only file, http and https are supported&quot;);
         }
-<span class="nc bnc" id="L339" title="All 2 branches missed.">        if (theToken != null) {</span>
-<span class="nc" id="L340">            HC5CredentialHelper.configurePreEmptiveBearerAuth(theURL, theToken, theCredentialsStore, theAuthCache);</span>
-<span class="nc bnc" id="L341" title="All 4 branches missed.">        } else if (theUser != null &amp;&amp; thePass != null) {</span>
-<span class="nc" id="L342">            HC5CredentialHelper.configurePreEmptiveBasicAuth(theURL, theUser, thePass, theCredentialsStore, theAuthCache);</span>
+<span class="nc bnc" id="L349" title="All 2 branches missed.">        if (theToken != null) {</span>
+<span class="nc" id="L350">            HC5CredentialHelper.configurePreEmptiveBearerAuth(theURL, theToken, theCredentialsStore, theAuthCache);</span>
+<span class="nc bnc" id="L351" title="All 4 branches missed.">        } else if (theUser != null &amp;&amp; thePass != null) {</span>
+<span class="nc" id="L352">            HC5CredentialHelper.configurePreEmptiveBasicAuth(theURL, theUser, thePass, theCredentialsStore, theAuthCache);</span>
         }
-<span class="nc" id="L344">    }</span>
+<span class="nc" id="L354">    }</span>
 
     /**
      * Retrieves a file from a given URL and saves it to the outputPath.
@@ -355,8 +365,8 @@ public final class Downloader {
      */
     public void fetchFile(URL url, File outputPath)
             throws DownloadFailedException, TooManyRequestsException, ResourceNotFoundException, URLConnectionFailureException {
-<span class="fc" id="L358">        fetchFile(url, outputPath, true);</span>
-<span class="fc" id="L359">    }</span>
+<span class="fc" id="L368">        fetchFile(url, outputPath, true);</span>
+<span class="fc" id="L369">    }</span>
 
     /**
      * Retrieves a file from a given URL and saves it to the outputPath.
@@ -373,43 +383,43 @@ public final class Downloader {
     public void fetchFile(URL url, File outputPath, boolean useProxy) throws DownloadFailedException,
             TooManyRequestsException, ResourceNotFoundException, URLConnectionFailureException {
         try {
-<span class="pc bpc" id="L376" title="1 of 2 branches missed.">            if (&quot;file&quot;.equals(url.getProtocol())) {</span>
-<span class="nc" id="L377">                final Path p = Paths.get(url.toURI());</span>
-<span class="nc" id="L378">                Files.copy(p, outputPath.toPath(), StandardCopyOption.REPLACE_EXISTING);</span>
-<span class="nc" id="L379">            } else {</span>
+<span class="pc bpc" id="L386" title="1 of 2 branches missed.">            if (&quot;file&quot;.equals(url.getProtocol())) {</span>
+<span class="nc" id="L387">                final Path p = Paths.get(url.toURI());</span>
+<span class="nc" id="L388">                Files.copy(p, outputPath.toPath(), StandardCopyOption.REPLACE_EXISTING);</span>
+<span class="nc" id="L389">            } else {</span>
                 final BasicClassicHttpRequest req;
-<span class="fc" id="L381">                req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
-<span class="pc bpc" id="L382" title="1 of 2 branches missed.">                try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
-<span class="fc" id="L383">                    final SaveToFileResponseHandler responseHandler = new SaveToFileResponseHandler(outputPath);</span>
-<span class="fc" id="L384">                    hc.execute(req, getPreEmptiveAuthContext(), responseHandler);</span>
+<span class="fc" id="L391">                req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
+<span class="pc bpc" id="L392" title="1 of 2 branches missed.">                try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
+<span class="fc" id="L393">                    final SaveToFileResponseHandler responseHandler = new SaveToFileResponseHandler(outputPath);</span>
+<span class="fc" id="L394">                    hc.execute(req, getPreEmptiveAuthContext(), responseHandler);</span>
                 }
             }
-<span class="nc" id="L387">        } catch (HttpResponseException hre) {</span>
-<span class="nc" id="L388">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
-<span class="nc" id="L389">        } catch (SSLHandshakeException ex) {</span>
-<span class="nc bnc" id="L390" title="All 2 branches missed.">            if (ex.getMessage().contains(&quot;unable to find valid certification path to requested target&quot;)) {</span>
-<span class="nc" id="L391">                final String msg = String.format(&quot;Unable to connect to '%s' - the Java trust store does not contain a trusted root for the cert. &quot;</span>
+<span class="nc" id="L397">        } catch (HttpResponseException hre) {</span>
+<span class="nc" id="L398">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
+<span class="nc" id="L399">        } catch (SSLHandshakeException ex) {</span>
+<span class="nc bnc" id="L400" title="All 2 branches missed.">            if (ex.getMessage().contains(&quot;unable to find valid certification path to requested target&quot;)) {</span>
+<span class="nc" id="L401">                final String msg = String.format(&quot;Unable to connect to '%s' - the Java trust store does not contain a trusted root for the cert. &quot;</span>
                         + &quot;Please see https://github.com/jeremylong/InstallCert for one method of updating the trusted certificates.&quot;, url);
-<span class="nc" id="L393">                throw new URLConnectionFailureException(msg, ex);</span>
+<span class="nc" id="L403">                throw new URLConnectionFailureException(msg, ex);</span>
             }
-<span class="nc" id="L395">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
-<span class="nc" id="L396">            throw new DownloadFailedException(msg, ex);</span>
-<span class="nc" id="L397">        } catch (RuntimeException | URISyntaxException | IOException ex) {</span>
-<span class="nc" id="L398">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
-<span class="nc" id="L399">            throw new DownloadFailedException(msg, ex);</span>
-<span class="pc" id="L400">        }</span>
-<span class="fc" id="L401">    }</span>
+<span class="nc" id="L405">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
+<span class="nc" id="L406">            throw new DownloadFailedException(msg, ex);</span>
+<span class="nc" id="L407">        } catch (RuntimeException | URISyntaxException | IOException ex) {</span>
+<span class="nc" id="L408">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
+<span class="nc" id="L409">            throw new DownloadFailedException(msg, ex);</span>
+<span class="pc" id="L410">        }</span>
+<span class="fc" id="L411">    }</span>
 
     private static void wrapAndThrowHttpResponseException(String url, HttpResponseException hre)
             throws ResourceNotFoundException, TooManyRequestsException, DownloadFailedException {
-<span class="nc" id="L405">        final String messageFormat = &quot;%s - Server status: %d - Server reason: %s&quot;;</span>
-<span class="nc bnc" id="L406" title="All 3 branches missed.">        switch (hre.getStatusCode()) {</span>
+<span class="nc" id="L415">        final String messageFormat = &quot;%s - Server status: %d - Server reason: %s&quot;;</span>
+<span class="nc bnc" id="L416" title="All 3 branches missed.">        switch (hre.getStatusCode()) {</span>
             case 404:
-<span class="nc" id="L408">                throw new ResourceNotFoundException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()), hre);</span>
+<span class="nc" id="L418">                throw new ResourceNotFoundException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()), hre);</span>
             case 429:
-<span class="nc" id="L410">                throw new TooManyRequestsException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()), hre);</span>
+<span class="nc" id="L420">                throw new TooManyRequestsException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()), hre);</span>
             default:
-<span class="nc" id="L412">                throw new DownloadFailedException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()), hre);</span>
+<span class="nc" id="L422">                throw new DownloadFailedException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()), hre);</span>
         }
     }
 
@@ -433,48 +443,48 @@ public final class Downloader {
      */
     public void fetchFile(URL url, File outputPath, boolean useProxy, String userKey, String passwordKey, String tokenKey)
             throws DownloadFailedException, TooManyRequestsException, ResourceNotFoundException, URLConnectionFailureException {
-<span class="nc bnc" id="L436" title="All 6 branches missed.">        final boolean basicConfigured = userKey != null &amp;&amp; settings.getString(userKey) != null</span>
-<span class="nc bnc" id="L437" title="All 2 branches missed.">                &amp;&amp; passwordKey != null &amp;&amp; settings.getString(passwordKey) != null;</span>
-<span class="nc bnc" id="L438" title="All 4 branches missed.">        final boolean tokenConfigured = tokenKey != null &amp;&amp; settings.getString(tokenKey) != null;</span>
-<span class="nc bnc" id="L439" title="All 6 branches missed.">        if (&quot;file&quot;.equals(url.getProtocol()) || (!basicConfigured &amp;&amp; !tokenConfigured)) {</span>
+<span class="nc bnc" id="L446" title="All 6 branches missed.">        final boolean basicConfigured = userKey != null &amp;&amp; settings.getString(userKey) != null</span>
+<span class="nc bnc" id="L447" title="All 2 branches missed.">                &amp;&amp; passwordKey != null &amp;&amp; settings.getString(passwordKey) != null;</span>
+<span class="nc bnc" id="L448" title="All 4 branches missed.">        final boolean tokenConfigured = tokenKey != null &amp;&amp; settings.getString(tokenKey) != null;</span>
+<span class="nc bnc" id="L449" title="All 6 branches missed.">        if (&quot;file&quot;.equals(url.getProtocol()) || (!basicConfigured &amp;&amp; !tokenConfigured)) {</span>
             // no credentials configured, so use the default fetchFile
-<span class="nc" id="L441">            fetchFile(url, outputPath, useProxy);</span>
-<span class="nc" id="L442">            return;</span>
+<span class="nc" id="L451">            fetchFile(url, outputPath, useProxy);</span>
+<span class="nc" id="L452">            return;</span>
         }
-<span class="nc" id="L444">        final String theProtocol = url.getProtocol();</span>
-<span class="nc bnc" id="L445" title="All 4 branches missed.">        if (!(&quot;http&quot;.equals(theProtocol) || &quot;https&quot;.equals(theProtocol))) {</span>
-<span class="nc" id="L446">            throw new DownloadFailedException(&quot;Unsupported protocol in the URL; only file, http and https are supported&quot;);</span>
+<span class="nc" id="L454">        final String theProtocol = url.getProtocol();</span>
+<span class="nc bnc" id="L455" title="All 4 branches missed.">        if (!(&quot;http&quot;.equals(theProtocol) || &quot;https&quot;.equals(theProtocol))) {</span>
+<span class="nc" id="L456">            throw new DownloadFailedException(&quot;Unsupported protocol in the URL; only file, http and https are supported&quot;);</span>
         }
         try {
-<span class="nc" id="L449">            final HttpClientContext dedicatedAuthContext = HttpClientContext.create();</span>
-<span class="nc" id="L450">            final CredentialsStore dedicatedCredentialStore = new SystemDefaultCredentialsProvider();</span>
-<span class="nc" id="L451">            final AuthCache dedicatedAuthCache = new BasicAuthCache();</span>
-<span class="nc" id="L452">            configureCredentials(url, url.toString(), userKey, passwordKey, tokenKey, dedicatedCredentialStore, dedicatedAuthCache);</span>
-<span class="nc bnc" id="L453" title="All 4 branches missed.">            if (useProxy &amp;&amp; proxyAuthScope != null) {</span>
-<span class="nc" id="L454">                tryConfigureProxyCredentials(dedicatedCredentialStore, dedicatedAuthCache);</span>
+<span class="nc" id="L459">            final HttpClientContext dedicatedAuthContext = HttpClientContext.create();</span>
+<span class="nc" id="L460">            final CredentialsStore dedicatedCredentialStore = new SystemDefaultCredentialsProvider();</span>
+<span class="nc" id="L461">            final AuthCache dedicatedAuthCache = new BasicAuthCache();</span>
+<span class="nc" id="L462">            configureCredentials(url, url.toString(), userKey, passwordKey, tokenKey, dedicatedCredentialStore, dedicatedAuthCache);</span>
+<span class="nc bnc" id="L463" title="All 4 branches missed.">            if (useProxy &amp;&amp; proxyAuthScope != null) {</span>
+<span class="nc" id="L464">                tryConfigureProxyCredentials(dedicatedCredentialStore, dedicatedAuthCache);</span>
             }
-<span class="nc" id="L456">            dedicatedAuthContext.setCredentialsProvider(dedicatedCredentialStore);</span>
-<span class="nc" id="L457">            dedicatedAuthContext.setAuthCache(dedicatedAuthCache);</span>
-<span class="nc bnc" id="L458" title="All 2 branches missed.">            try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
-<span class="nc" id="L459">                final BasicClassicHttpRequest req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
-<span class="nc" id="L460">                final SaveToFileResponseHandler responseHandler = new SaveToFileResponseHandler(outputPath);</span>
-<span class="nc" id="L461">                hc.execute(req, dedicatedAuthContext, responseHandler);</span>
+<span class="nc" id="L466">            dedicatedAuthContext.setCredentialsProvider(dedicatedCredentialStore);</span>
+<span class="nc" id="L467">            dedicatedAuthContext.setAuthCache(dedicatedAuthCache);</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">            try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
+<span class="nc" id="L469">                final BasicClassicHttpRequest req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
+<span class="nc" id="L470">                final SaveToFileResponseHandler responseHandler = new SaveToFileResponseHandler(outputPath);</span>
+<span class="nc" id="L471">                hc.execute(req, dedicatedAuthContext, responseHandler);</span>
             }
-<span class="nc" id="L463">        } catch (HttpResponseException hre) {</span>
-<span class="nc" id="L464">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
-<span class="nc" id="L465">        } catch (SSLHandshakeException ex) {</span>
-<span class="nc bnc" id="L466" title="All 2 branches missed.">            if (ex.getMessage().contains(&quot;unable to find valid certification path to requested target&quot;)) {</span>
-<span class="nc" id="L467">                final String msg = String.format(&quot;Unable to connect to '%s' - the Java trust store does not contain a trusted root for the cert. &quot;</span>
+<span class="nc" id="L473">        } catch (HttpResponseException hre) {</span>
+<span class="nc" id="L474">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
+<span class="nc" id="L475">        } catch (SSLHandshakeException ex) {</span>
+<span class="nc bnc" id="L476" title="All 2 branches missed.">            if (ex.getMessage().contains(&quot;unable to find valid certification path to requested target&quot;)) {</span>
+<span class="nc" id="L477">                final String msg = String.format(&quot;Unable to connect to '%s' - the Java trust store does not contain a trusted root for the cert. &quot;</span>
                         + &quot;Please see https://github.com/jeremylong/InstallCert for one method of updating the trusted certificates.&quot;, url);
-<span class="nc" id="L469">                throw new URLConnectionFailureException(msg, ex);</span>
+<span class="nc" id="L479">                throw new URLConnectionFailureException(msg, ex);</span>
             }
-<span class="nc" id="L471">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
-<span class="nc" id="L472">            throw new DownloadFailedException(msg, ex);</span>
-<span class="nc" id="L473">        } catch (RuntimeException | URISyntaxException | IOException ex) {</span>
-<span class="nc" id="L474">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
-<span class="nc" id="L475">            throw new DownloadFailedException(msg, ex);</span>
-<span class="nc" id="L476">        }</span>
-<span class="nc" id="L477">    }</span>
+<span class="nc" id="L481">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
+<span class="nc" id="L482">            throw new DownloadFailedException(msg, ex);</span>
+<span class="nc" id="L483">        } catch (RuntimeException | URISyntaxException | IOException ex) {</span>
+<span class="nc" id="L484">            final String msg = format(&quot;Download failed, unable to copy '%s' to '%s'; %s&quot;, url, outputPath.getAbsolutePath(), ex.getMessage());</span>
+<span class="nc" id="L485">            throw new DownloadFailedException(msg, ex);</span>
+<span class="nc" id="L486">        }</span>
+<span class="nc" id="L487">    }</span>
 
     /**
      * Add the proxy credentials to the CredentialsProvider and AuthCache instances when proxy-authentication is configured in the settings.
@@ -482,11 +492,11 @@ public final class Downloader {
      * @param authCache The AuthCache to cache the pre-empted credentials in
      */
     private void tryConfigureProxyCredentials(@NotNull CredentialsStore credentialsProvider, @NotNull AuthCache authCache) {
-<span class="nc bnc" id="L485" title="All 2 branches missed.">        if (proxyPreEmptAuth != null) {</span>
-<span class="nc" id="L486">            credentialsProvider.setCredentials(proxyAuthScope, proxyCreds);</span>
-<span class="nc" id="L487">            authCache.put(proxyHttpHost, proxyPreEmptAuth);</span>
+<span class="nc bnc" id="L495" title="All 2 branches missed.">        if (proxyPreEmptAuth != null) {</span>
+<span class="nc" id="L496">            credentialsProvider.setCredentials(proxyAuthScope, proxyCreds);</span>
+<span class="nc" id="L497">            authCache.put(proxyHttpHost, proxyPreEmptAuth);</span>
         }
-<span class="nc" id="L489">    }</span>
+<span class="nc" id="L499">    }</span>
 
     /**
      * Posts a payload to the URL and returns the response as a string.
@@ -504,35 +514,35 @@ public final class Downloader {
     public String postBasedFetchContent(URI url, String payload, ContentType payloadType, List&lt;Header&gt; hdr)
             throws DownloadFailedException, TooManyRequestsException, ResourceNotFoundException, URLConnectionFailureException {
         try {
-<span class="nc bnc" id="L507" title="All 4 branches missed.">            if (url.getScheme() == null || !url.getScheme().toLowerCase(Locale.ROOT).matches(&quot;^https?&quot;)) {</span>
-<span class="nc" id="L508">                throw new IllegalArgumentException(&quot;Unsupported protocol in the URL; only http and https are supported&quot;);</span>
+<span class="nc bnc" id="L517" title="All 4 branches missed.">            if (url.getScheme() == null || !url.getScheme().toLowerCase(Locale.ROOT).matches(&quot;^https?&quot;)) {</span>
+<span class="nc" id="L518">                throw new IllegalArgumentException(&quot;Unsupported protocol in the URL; only http and https are supported&quot;);</span>
             } else {
                 final BasicClassicHttpRequest req;
-<span class="nc" id="L511">                req = new BasicClassicHttpRequest(Method.POST, url);</span>
-<span class="nc" id="L512">                req.setEntity(new StringEntity(payload, payloadType));</span>
-<span class="nc bnc" id="L513" title="All 2 branches missed.">                for (Header h : hdr) {</span>
-<span class="nc" id="L514">                    req.addHeader(h);</span>
-<span class="nc" id="L515">                }</span>
+<span class="nc" id="L521">                req = new BasicClassicHttpRequest(Method.POST, url);</span>
+<span class="nc" id="L522">                req.setEntity(new StringEntity(payload, payloadType));</span>
+<span class="nc bnc" id="L523" title="All 2 branches missed.">                for (Header h : hdr) {</span>
+<span class="nc" id="L524">                    req.addHeader(h);</span>
+<span class="nc" id="L525">                }</span>
                 final String result;
-<span class="nc" id="L517">                try (CloseableHttpClient hc = httpClientBuilder.build()) {</span>
-<span class="nc" id="L518">                    result = hc.execute(req, getPreEmptiveAuthContext(), new BasicHttpClientResponseHandler());</span>
+<span class="nc" id="L527">                try (CloseableHttpClient hc = httpClientBuilder.build()) {</span>
+<span class="nc" id="L528">                    result = hc.execute(req, getPreEmptiveAuthContext(), new BasicHttpClientResponseHandler());</span>
                 }
-<span class="nc" id="L520">                return result;</span>
+<span class="nc" id="L530">                return result;</span>
             }
-<span class="nc" id="L522">        } catch (HttpResponseException hre) {</span>
-<span class="nc" id="L523">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
-<span class="nc" id="L524">            throw new InternalError(&quot;wrapAndThrowHttpResponseException will always throw an exception but Java compiler fails to spot it&quot;);</span>
-<span class="nc" id="L525">        } catch (SSLHandshakeException ex) {</span>
-<span class="nc bnc" id="L526" title="All 2 branches missed.">            if (ex.getMessage().contains(&quot;unable to find valid certification path to requested target&quot;)) {</span>
-<span class="nc" id="L527">                final String msg = String.format(&quot;Unable to connect to '%s' - the Java trust store does not contain a trusted root for the cert. &quot;</span>
+<span class="nc" id="L532">        } catch (HttpResponseException hre) {</span>
+<span class="nc" id="L533">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
+<span class="nc" id="L534">            throw new InternalError(&quot;wrapAndThrowHttpResponseException will always throw an exception but Java compiler fails to spot it&quot;);</span>
+<span class="nc" id="L535">        } catch (SSLHandshakeException ex) {</span>
+<span class="nc bnc" id="L536" title="All 2 branches missed.">            if (ex.getMessage().contains(&quot;unable to find valid certification path to requested target&quot;)) {</span>
+<span class="nc" id="L537">                final String msg = String.format(&quot;Unable to connect to '%s' - the Java trust store does not contain a trusted root for the cert. &quot;</span>
                         + &quot;Please see https://github.com/jeremylong/InstallCert for one method of updating the trusted certificates.&quot;, url);
-<span class="nc" id="L529">                throw new URLConnectionFailureException(msg, ex);</span>
+<span class="nc" id="L539">                throw new URLConnectionFailureException(msg, ex);</span>
             }
-<span class="nc" id="L531">            final String msg = format(&quot;Download failed, error downloading '%s'; %s&quot;, url, ex.getMessage());</span>
-<span class="nc" id="L532">            throw new DownloadFailedException(msg, ex);</span>
-<span class="nc" id="L533">        } catch (IOException | RuntimeException ex) {</span>
-<span class="nc" id="L534">            final String msg = format(&quot;Download failed, error downloading '%s'; %s&quot;, url, ex.getMessage());</span>
-<span class="nc" id="L535">            throw new DownloadFailedException(msg, ex);</span>
+<span class="nc" id="L541">            final String msg = format(&quot;Download failed, error downloading '%s'; %s&quot;, url, ex.getMessage());</span>
+<span class="nc" id="L542">            throw new DownloadFailedException(msg, ex);</span>
+<span class="nc" id="L543">        } catch (IOException | RuntimeException ex) {</span>
+<span class="nc" id="L544">            final String msg = format(&quot;Download failed, error downloading '%s'; %s&quot;, url, ex.getMessage());</span>
+<span class="nc" id="L545">            throw new DownloadFailedException(msg, ex);</span>
         }
     }
 
@@ -548,7 +558,7 @@ public final class Downloader {
      * @throws ResourceNotFoundException thrown when a 404 is received
      */
     public String fetchContent(URL url, Charset charset) throws DownloadFailedException, TooManyRequestsException, ResourceNotFoundException {
-<span class="nc" id="L551">        return fetchContent(url, true, charset);</span>
+<span class="nc" id="L561">        return fetchContent(url, true, charset);</span>
     }
 
     /**
@@ -568,25 +578,25 @@ public final class Downloader {
             throws DownloadFailedException, TooManyRequestsException, ResourceNotFoundException {
         try {
             final String result;
-<span class="nc bnc" id="L571" title="All 2 branches missed.">            if (&quot;file&quot;.equals(url.getProtocol())) {</span>
-<span class="nc" id="L572">                final Path p = Paths.get(url.toURI());</span>
-<span class="nc" id="L573">                result = Files.readString(p, charset);</span>
-<span class="nc" id="L574">            } else {</span>
+<span class="nc bnc" id="L581" title="All 2 branches missed.">            if (&quot;file&quot;.equals(url.getProtocol())) {</span>
+<span class="nc" id="L582">                final Path p = Paths.get(url.toURI());</span>
+<span class="nc" id="L583">                result = Files.readString(p, charset);</span>
+<span class="nc" id="L584">            } else {</span>
                 final BasicClassicHttpRequest req;
-<span class="nc" id="L576">                req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
-<span class="nc bnc" id="L577" title="All 2 branches missed.">                try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
-<span class="nc" id="L578">                    req.addHeader(HttpHeaders.ACCEPT_CHARSET, charset.name());</span>
-<span class="nc" id="L579">                    final ExplicitCharsetToStringResponseHandler responseHandler = new ExplicitCharsetToStringResponseHandler(charset);</span>
-<span class="nc" id="L580">                    result = hc.execute(req, getPreEmptiveAuthContext(), responseHandler);</span>
+<span class="nc" id="L586">                req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
+<span class="nc bnc" id="L587" title="All 2 branches missed.">                try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
+<span class="nc" id="L588">                    req.addHeader(HttpHeaders.ACCEPT_CHARSET, charset.name());</span>
+<span class="nc" id="L589">                    final ExplicitCharsetToStringResponseHandler responseHandler = new ExplicitCharsetToStringResponseHandler(charset);</span>
+<span class="nc" id="L590">                    result = hc.execute(req, getPreEmptiveAuthContext(), responseHandler);</span>
                 }
             }
-<span class="nc" id="L583">            return result;</span>
-<span class="nc" id="L584">        } catch (HttpResponseException hre) {</span>
-<span class="nc" id="L585">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
-<span class="nc" id="L586">            throw new InternalError(&quot;wrapAndThrowHttpResponseException will always throw an exception but Java compiler fails to spot it&quot;);</span>
-<span class="nc" id="L587">        } catch (RuntimeException | URISyntaxException | IOException ex) {</span>
-<span class="nc" id="L588">            final String msg = format(&quot;Download failed, error downloading '%s'; %s&quot;, url, ex.getMessage());</span>
-<span class="nc" id="L589">            throw new DownloadFailedException(msg, ex);</span>
+<span class="nc" id="L593">            return result;</span>
+<span class="nc" id="L594">        } catch (HttpResponseException hre) {</span>
+<span class="nc" id="L595">            wrapAndThrowHttpResponseException(url.toString(), hre);</span>
+<span class="nc" id="L596">            throw new InternalError(&quot;wrapAndThrowHttpResponseException will always throw an exception but Java compiler fails to spot it&quot;);</span>
+<span class="nc" id="L597">        } catch (RuntimeException | URISyntaxException | IOException ex) {</span>
+<span class="nc" id="L598">            final String msg = format(&quot;Download failed, error downloading '%s'; %s&quot;, url, ex.getMessage());</span>
+<span class="nc" id="L599">            throw new DownloadFailedException(msg, ex);</span>
         }
     }
 
@@ -595,10 +605,10 @@ public final class Downloader {
      * @return A HttpClientContext pre-configured with the authentication cache build from the settings.
      */
     public HttpClientContext getPreEmptiveAuthContext() {
-<span class="fc" id="L598">        final HttpClientContext context = HttpClientContext.create();</span>
-<span class="fc" id="L599">        context.setCredentialsProvider(credentialsProvider);</span>
-<span class="fc" id="L600">        context.setAuthCache(authCache);</span>
-<span class="fc" id="L601">        return context;</span>
+<span class="fc" id="L608">        final HttpClientContext context = HttpClientContext.create();</span>
+<span class="fc" id="L609">        context.setCredentialsProvider(credentialsProvider);</span>
+<span class="fc" id="L610">        context.setAuthCache(authCache);</span>
+<span class="fc" id="L611">        return context;</span>
     }
 
     /**
@@ -608,7 +618,7 @@ public final class Downloader {
      * @return A HttpClient pre-configured with the settings.
      */
     public CloseableHttpClient getHttpClient(boolean useProxy) {
-<span class="nc bnc" id="L611" title="All 2 branches missed.">        return useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build();</span>
+<span class="nc bnc" id="L621" title="All 2 branches missed.">        return useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build();</span>
     }
 
     /**
@@ -624,7 +634,7 @@ public final class Downloader {
      */
     public &lt;T&gt; T fetchAndHandle(@NotNull URL url, @NotNull HttpClientResponseHandler&lt;T&gt; handler)
             throws IOException, TooManyRequestsException, ResourceNotFoundException, URISyntaxException {
-<span class="fc" id="L627">        return fetchAndHandle(url, handler, Collections.emptyList(), true);</span>
+<span class="fc" id="L637">        return fetchAndHandle(url, handler, Collections.emptyList(), true);</span>
     }
 
     /**
@@ -641,7 +651,7 @@ public final class Downloader {
      */
     public &lt;T&gt; T fetchAndHandle(@NotNull URL url, @NotNull HttpClientResponseHandler&lt;T&gt; handler, @NotNull List&lt;Header&gt; hdr)
             throws IOException, TooManyRequestsException, ResourceNotFoundException, URISyntaxException {
-<span class="nc" id="L644">        return fetchAndHandle(url, handler, hdr, true);</span>
+<span class="nc" id="L654">        return fetchAndHandle(url, handler, hdr, true);</span>
     }
 
     /**
@@ -660,22 +670,22 @@ public final class Downloader {
     public &lt;T&gt; T fetchAndHandle(@NotNull URL url, @NotNull HttpClientResponseHandler&lt;T&gt; handler, @NotNull List&lt;Header&gt; hdr, boolean useProxy)
             throws IOException, TooManyRequestsException, ResourceNotFoundException, URISyntaxException {
         final T data;
-<span class="pc bpc" id="L663" title="1 of 2 branches missed.">        if (&quot;file&quot;.equals(url.getProtocol())) {</span>
-<span class="nc" id="L664">            final Path p = Paths.get(url.toURI());</span>
-<span class="nc" id="L665">            try (InputStream is = Files.newInputStream(p)) {</span>
-<span class="nc" id="L666">                final HttpEntity dummyEntity = new BasicHttpEntity(is, ContentType.APPLICATION_JSON);</span>
-<span class="nc" id="L667">                final ClassicHttpResponse dummyResponse = new BasicClassicHttpResponse(200);</span>
-<span class="nc" id="L668">                dummyResponse.setEntity(dummyEntity);</span>
-<span class="nc" id="L669">                data = handler.handleResponse(dummyResponse);</span>
-<span class="nc" id="L670">            } catch (HttpException e) {</span>
-<span class="nc" id="L671">                throw new IllegalStateException(&quot;HttpException encountered emulating a HTTP response from a file&quot;, e);</span>
-<span class="nc" id="L672">            }</span>
-<span class="nc" id="L673">        } else {</span>
-<span class="pc bpc" id="L674" title="1 of 2 branches missed.">            try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
-<span class="fc" id="L675">                return fetchAndHandle(hc, url, handler, hdr);</span>
+<span class="pc bpc" id="L673" title="1 of 2 branches missed.">        if (&quot;file&quot;.equals(url.getProtocol())) {</span>
+<span class="nc" id="L674">            final Path p = Paths.get(url.toURI());</span>
+<span class="nc" id="L675">            try (InputStream is = Files.newInputStream(p)) {</span>
+<span class="nc" id="L676">                final HttpEntity dummyEntity = new BasicHttpEntity(is, ContentType.APPLICATION_JSON);</span>
+<span class="nc" id="L677">                final ClassicHttpResponse dummyResponse = new BasicClassicHttpResponse(200);</span>
+<span class="nc" id="L678">                dummyResponse.setEntity(dummyEntity);</span>
+<span class="nc" id="L679">                data = handler.handleResponse(dummyResponse);</span>
+<span class="nc" id="L680">            } catch (HttpException e) {</span>
+<span class="nc" id="L681">                throw new IllegalStateException(&quot;HttpException encountered emulating a HTTP response from a file&quot;, e);</span>
+<span class="nc" id="L682">            }</span>
+<span class="nc" id="L683">        } else {</span>
+<span class="pc bpc" id="L684" title="1 of 2 branches missed.">            try (CloseableHttpClient hc = useProxy ? httpClientBuilder.build() : httpClientBuilderExplicitNoproxy.build()) {</span>
+<span class="fc" id="L685">                return fetchAndHandle(hc, url, handler, hdr);</span>
             }
         }
-<span class="nc" id="L678">        return data;</span>
+<span class="nc" id="L688">        return data;</span>
     }
     /**
      * Download a resource from the given URL and have its content handled by the given ResponseHandler.
@@ -693,29 +703,29 @@ public final class Downloader {
     public &lt;T&gt; T fetchAndHandle(@NotNull CloseableHttpClient client, @NotNull URL url, @NotNull HttpClientResponseHandler&lt;T&gt; handler,
                                 @NotNull List&lt;Header&gt; hdr) throws IOException, TooManyRequestsException, ResourceNotFoundException {
         try {
-<span class="fc" id="L696">            final String theProtocol = url.getProtocol();</span>
-<span class="pc bpc" id="L697" title="2 of 4 branches missed.">            if (!(&quot;http&quot;.equals(theProtocol) || &quot;https&quot;.equals(theProtocol))) {</span>
-<span class="nc" id="L698">                throw new DownloadFailedException(&quot;Unsupported protocol in the URL; only http and https are supported&quot;);</span>
+<span class="fc" id="L706">            final String theProtocol = url.getProtocol();</span>
+<span class="pc bpc" id="L707" title="2 of 4 branches missed.">            if (!(&quot;http&quot;.equals(theProtocol) || &quot;https&quot;.equals(theProtocol))) {</span>
+<span class="nc" id="L708">                throw new DownloadFailedException(&quot;Unsupported protocol in the URL; only http and https are supported&quot;);</span>
             }
-<span class="fc" id="L700">            final BasicClassicHttpRequest req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
-<span class="pc bpc" id="L701" title="1 of 2 branches missed.">            for (Header h : hdr) {</span>
-<span class="nc" id="L702">                req.addHeader(h);</span>
-<span class="nc" id="L703">            }</span>
-<span class="fc" id="L704">            final HttpClientContext context = getPreEmptiveAuthContext();</span>
-<span class="fc" id="L705">            return client.execute(req, context, handler);</span>
-<span class="nc" id="L706">        } catch (HttpResponseException hre) {</span>
-<span class="nc" id="L707">            final String messageFormat = &quot;%s - Server status: %d - Server reason: %s&quot;;</span>
-<span class="nc bnc" id="L708" title="All 3 branches missed.">            switch (hre.getStatusCode()) {</span>
+<span class="fc" id="L710">            final BasicClassicHttpRequest req = new BasicClassicHttpRequest(Method.GET, url.toURI());</span>
+<span class="pc bpc" id="L711" title="1 of 2 branches missed.">            for (Header h : hdr) {</span>
+<span class="nc" id="L712">                req.addHeader(h);</span>
+<span class="nc" id="L713">            }</span>
+<span class="fc" id="L714">            final HttpClientContext context = getPreEmptiveAuthContext();</span>
+<span class="fc" id="L715">            return client.execute(req, context, handler);</span>
+<span class="nc" id="L716">        } catch (HttpResponseException hre) {</span>
+<span class="nc" id="L717">            final String messageFormat = &quot;%s - Server status: %d - Server reason: %s&quot;;</span>
+<span class="nc bnc" id="L718" title="All 3 branches missed.">            switch (hre.getStatusCode()) {</span>
                 case 404:
-<span class="nc" id="L710">                    throw new ResourceNotFoundException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()));</span>
+<span class="nc" id="L720">                    throw new ResourceNotFoundException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()));</span>
                 case 429:
-<span class="nc" id="L712">                    throw new TooManyRequestsException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()));</span>
+<span class="nc" id="L722">                    throw new TooManyRequestsException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()));</span>
                 default:
-<span class="nc" id="L714">                    throw new IOException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()));</span>
+<span class="nc" id="L724">                    throw new IOException(String.format(messageFormat, url, hre.getStatusCode(), hre.getReasonPhrase()));</span>
             }
-<span class="nc" id="L716">        } catch (RuntimeException | URISyntaxException ex) {</span>
-<span class="nc" id="L717">            final String msg = format(&quot;Download failed, unable to retrieve and parse '%s'; %s&quot;, url, ex.getMessage());</span>
-<span class="nc" id="L718">            throw new IOException(msg, ex);</span>
+<span class="nc" id="L726">        } catch (RuntimeException | URISyntaxException ex) {</span>
+<span class="nc" id="L727">            final String msg = format(&quot;Download failed, unable to retrieve and parse '%s'; %s&quot;, url, ex.getMessage());</span>
+<span class="nc" id="L728">            throw new IOException(msg, ex);</span>
         }
     }
 
@@ -724,46 +734,46 @@ public final class Downloader {
         /**
          * The suffix-match entries from the nonProxyHosts (those starting with a {@code *}).
          */
-<span class="nc" id="L727">        private final List&lt;String&gt; suffixMatch = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L737">        private final List&lt;String&gt; suffixMatch = new ArrayList&lt;&gt;();</span>
         /**
          * The full host entries from the nonProxyHosts (those &lt;em&gt;not&lt;/em&gt; starting with a {@code *}).
          */
-<span class="nc" id="L731">        private final List&lt;String&gt; fullmatch = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L741">        private final List&lt;String&gt; fullmatch = new ArrayList&lt;&gt;();</span>
         /**
          * The proxy use when no proxy-exception is found.
          */
         private final Proxy configuredProxy;
 
-<span class="nc" id="L737">        SelectiveProxySelector(Proxy httpHost, String[] nonProxyHostsPatterns) {</span>
-<span class="nc bnc" id="L738" title="All 2 branches missed.">            for (String nonProxyHostPattern : nonProxyHostsPatterns) {</span>
-<span class="nc bnc" id="L739" title="All 2 branches missed.">                if (nonProxyHostPattern.startsWith(&quot;*&quot;)) {</span>
-<span class="nc" id="L740">                    suffixMatch.add(nonProxyHostPattern.substring(1));</span>
+<span class="nc" id="L747">        SelectiveProxySelector(Proxy httpHost, String[] nonProxyHostsPatterns) {</span>
+<span class="nc bnc" id="L748" title="All 2 branches missed.">            for (String nonProxyHostPattern : nonProxyHostsPatterns) {</span>
+<span class="nc bnc" id="L749" title="All 2 branches missed.">                if (nonProxyHostPattern.startsWith(&quot;*&quot;)) {</span>
+<span class="nc" id="L750">                    suffixMatch.add(nonProxyHostPattern.substring(1));</span>
                 } else {
-<span class="nc" id="L742">                    fullmatch.add(nonProxyHostPattern);</span>
+<span class="nc" id="L752">                    fullmatch.add(nonProxyHostPattern);</span>
                 }
             }
-<span class="nc" id="L745">            this.configuredProxy = httpHost;</span>
-<span class="nc" id="L746">        }</span>
+<span class="nc" id="L755">            this.configuredProxy = httpHost;</span>
+<span class="nc" id="L756">        }</span>
 
         @Override
         public List&lt;Proxy&gt; select(URI uri) {
-<span class="nc" id="L750">            final String theHost = uri.getHost();</span>
-<span class="nc bnc" id="L751" title="All 2 branches missed.">            if (fullmatch.contains(theHost)) {</span>
-<span class="nc" id="L752">                return Collections.singletonList(Proxy.NO_PROXY);</span>
+<span class="nc" id="L760">            final String theHost = uri.getHost();</span>
+<span class="nc bnc" id="L761" title="All 2 branches missed.">            if (fullmatch.contains(theHost)) {</span>
+<span class="nc" id="L762">                return Collections.singletonList(Proxy.NO_PROXY);</span>
             } else {
-<span class="nc bnc" id="L754" title="All 2 branches missed.">                for (String suffix : suffixMatch) {</span>
-<span class="nc bnc" id="L755" title="All 2 branches missed.">                    if (theHost.endsWith(suffix)) {</span>
-<span class="nc" id="L756">                        return Collections.singletonList(Proxy.NO_PROXY);</span>
+<span class="nc bnc" id="L764" title="All 2 branches missed.">                for (String suffix : suffixMatch) {</span>
+<span class="nc bnc" id="L765" title="All 2 branches missed.">                    if (theHost.endsWith(suffix)) {</span>
+<span class="nc" id="L766">                        return Collections.singletonList(Proxy.NO_PROXY);</span>
                     }
-<span class="nc" id="L758">                }</span>
+<span class="nc" id="L768">                }</span>
             }
-<span class="nc" id="L760">            return List.of(configuredProxy);</span>
+<span class="nc" id="L770">            return List.of(configuredProxy);</span>
         }
 
         @Override
         public void connectFailed(URI uri, SocketAddress sa, IOException ioe) {
             // nothing to be done for this single proxy proxy-selector
-<span class="nc" id="L766">        }</span>
+<span class="nc" id="L776">        }</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
