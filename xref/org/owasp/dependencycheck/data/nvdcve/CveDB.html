@@ -937,20 +937,20 @@
 <a class="jxr_linenumber" name="L929" href="#L929">929</a>                         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L930" href="#L930">930</a>                             modifiedVulnAvailabilityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);
 <a class="jxr_linenumber" name="L931" href="#L931">931</a>                         }
-<a class="jxr_linenumber" name="L932" href="#L932">932</a>                         CvssV4Data.ModifiedCiaType modifiedSubConfidentialityImpact = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L932" href="#L932">932</a>                         CvssV4Data.ModifiedSubCType modifiedSubConfidentialityImpact = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L933" href="#L933">933</a>                         value = rsV.getString(56);
 <a class="jxr_linenumber" name="L934" href="#L934">934</a>                         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L935" href="#L935">935</a>                             modifiedSubConfidentialityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);
+<a class="jxr_linenumber" name="L935" href="#L935">935</a>                             modifiedSubConfidentialityImpact = CvssV4Data.ModifiedSubCType.fromValue(value);
 <a class="jxr_linenumber" name="L936" href="#L936">936</a>                         }
-<a class="jxr_linenumber" name="L937" href="#L937">937</a>                         CvssV4Data.ModifiedCiaType modifiedSubIntegrityImpact = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L937" href="#L937">937</a>                         CvssV4Data.ModifiedSubIaType modifiedSubIntegrityImpact = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L938" href="#L938">938</a>                         value = rsV.getString(57);
 <a class="jxr_linenumber" name="L939" href="#L939">939</a>                         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L940" href="#L940">940</a>                             modifiedSubIntegrityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);
+<a class="jxr_linenumber" name="L940" href="#L940">940</a>                             modifiedSubIntegrityImpact = CvssV4Data.ModifiedSubIaType.fromValue(value);
 <a class="jxr_linenumber" name="L941" href="#L941">941</a>                         }
-<a class="jxr_linenumber" name="L942" href="#L942">942</a>                         CvssV4Data.ModifiedCiaType modifiedSubAvailabilityImpact = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L942" href="#L942">942</a>                         CvssV4Data.ModifiedSubIaType modifiedSubAvailabilityImpact = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L943" href="#L943">943</a>                         value = rsV.getString(58);
 <a class="jxr_linenumber" name="L944" href="#L944">944</a>                         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L945" href="#L945">945</a>                             modifiedSubAvailabilityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);
+<a class="jxr_linenumber" name="L945" href="#L945">945</a>                             modifiedSubAvailabilityImpact = CvssV4Data.ModifiedSubIaType.fromValue(value);
 <a class="jxr_linenumber" name="L946" href="#L946">946</a>                         }
 <a class="jxr_linenumber" name="L947" href="#L947">947</a>                         CvssV4Data.SafetyType safety = <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L948" href="#L948">948</a>                         value = rsV.getString(59);
@@ -2206,7 +2206,7 @@
 <a class="jxr_linenumber" name="L2198" href="#L2198">2198</a>         }
 <a class="jxr_linenumber" name="L2199" href="#L2199">2199</a>     }
 <a class="jxr_linenumber" name="L2200" href="#L2200">2200</a> 
-<a class="jxr_linenumber" name="L2201" href="#L2201">2201</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.SafetyType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2201" href="#L2201">2201</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.ModifiedSubCType value) <strong class="jxr_keyword">throws</strong> SQLException  {
 <a class="jxr_linenumber" name="L2202" href="#L2202">2202</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2203" href="#L2203">2203</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2204" href="#L2204">2204</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2214,7 +2214,7 @@
 <a class="jxr_linenumber" name="L2206" href="#L2206">2206</a>         }
 <a class="jxr_linenumber" name="L2207" href="#L2207">2207</a>     }
 <a class="jxr_linenumber" name="L2208" href="#L2208">2208</a> 
-<a class="jxr_linenumber" name="L2209" href="#L2209">2209</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.AutomatableType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2209" href="#L2209">2209</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.ModifiedSubIaType value) <strong class="jxr_keyword">throws</strong> SQLException  {
 <a class="jxr_linenumber" name="L2210" href="#L2210">2210</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2211" href="#L2211">2211</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2212" href="#L2212">2212</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2222,7 +2222,7 @@
 <a class="jxr_linenumber" name="L2214" href="#L2214">2214</a>         }
 <a class="jxr_linenumber" name="L2215" href="#L2215">2215</a>     }
 <a class="jxr_linenumber" name="L2216" href="#L2216">2216</a> 
-<a class="jxr_linenumber" name="L2217" href="#L2217">2217</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.RecoveryType value)  <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L2217" href="#L2217">2217</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.SafetyType value) <strong class="jxr_keyword">throws</strong> SQLException  {
 <a class="jxr_linenumber" name="L2218" href="#L2218">2218</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2219" href="#L2219">2219</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2220" href="#L2220">2220</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2230,7 +2230,7 @@
 <a class="jxr_linenumber" name="L2222" href="#L2222">2222</a>         }
 <a class="jxr_linenumber" name="L2223" href="#L2223">2223</a>     }
 <a class="jxr_linenumber" name="L2224" href="#L2224">2224</a> 
-<a class="jxr_linenumber" name="L2225" href="#L2225">2225</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.ValueDensityType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2225" href="#L2225">2225</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.AutomatableType value) <strong class="jxr_keyword">throws</strong> SQLException  {
 <a class="jxr_linenumber" name="L2226" href="#L2226">2226</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2227" href="#L2227">2227</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2228" href="#L2228">2228</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2238,7 +2238,7 @@
 <a class="jxr_linenumber" name="L2230" href="#L2230">2230</a>         }
 <a class="jxr_linenumber" name="L2231" href="#L2231">2231</a>     }
 <a class="jxr_linenumber" name="L2232" href="#L2232">2232</a> 
-<a class="jxr_linenumber" name="L2233" href="#L2233">2233</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.VulnerabilityResponseEffortType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2233" href="#L2233">2233</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.RecoveryType value)  <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="L2234" href="#L2234">2234</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2235" href="#L2235">2235</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2236" href="#L2236">2236</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2246,7 +2246,7 @@
 <a class="jxr_linenumber" name="L2238" href="#L2238">2238</a>         }
 <a class="jxr_linenumber" name="L2239" href="#L2239">2239</a>     }
 <a class="jxr_linenumber" name="L2240" href="#L2240">2240</a> 
-<a class="jxr_linenumber" name="L2241" href="#L2241">2241</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.ProviderUrgencyType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2241" href="#L2241">2241</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.ValueDensityType value) <strong class="jxr_keyword">throws</strong> SQLException  {
 <a class="jxr_linenumber" name="L2242" href="#L2242">2242</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2243" href="#L2243">2243</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2244" href="#L2244">2244</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2254,7 +2254,7 @@
 <a class="jxr_linenumber" name="L2246" href="#L2246">2246</a>         }
 <a class="jxr_linenumber" name="L2247" href="#L2247">2247</a>     }
 <a class="jxr_linenumber" name="L2248" href="#L2248">2248</a> 
-<a class="jxr_linenumber" name="L2249" href="#L2249">2249</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.SeverityType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2249" href="#L2249">2249</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.VulnerabilityResponseEffortType value) <strong class="jxr_keyword">throws</strong> SQLException  {
 <a class="jxr_linenumber" name="L2250" href="#L2250">2250</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2251" href="#L2251">2251</a>             ps.setNull(i, java.sql.Types.VARCHAR);
 <a class="jxr_linenumber" name="L2252" href="#L2252">2252</a>         } <strong class="jxr_keyword">else</strong> {
@@ -2262,94 +2262,110 @@
 <a class="jxr_linenumber" name="L2254" href="#L2254">2254</a>         }
 <a class="jxr_linenumber" name="L2255" href="#L2255">2255</a>     }
 <a class="jxr_linenumber" name="L2256" href="#L2256">2256</a> 
-<a class="jxr_linenumber" name="L2257" href="#L2257">2257</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2258" href="#L2258">2258</a> <em class="jxr_javadoccomment">     * Sets the float parameter on a prepared statement from a properties map.</em>
-<a class="jxr_linenumber" name="L2259" href="#L2259">2259</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2260" href="#L2260">2260</a> <em class="jxr_javadoccomment">     * @param ps a prepared statement</em>
-<a class="jxr_linenumber" name="L2261" href="#L2261">2261</a> <em class="jxr_javadoccomment">     * @param i the index of the property</em>
-<a class="jxr_linenumber" name="L2262" href="#L2262">2262</a> <em class="jxr_javadoccomment">     * @param props the property collection</em>
-<a class="jxr_linenumber" name="L2263" href="#L2263">2263</a> <em class="jxr_javadoccomment">     * @param key the property key</em>
-<a class="jxr_linenumber" name="L2264" href="#L2264">2264</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error adding the property</em>
-<a class="jxr_linenumber" name="L2265" href="#L2265">2265</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2266" href="#L2266">2266</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setFloatValue(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, Map&lt;String, Object&gt; props, String key) <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L2267" href="#L2267">2267</a>         <strong class="jxr_keyword">if</strong> (props != <strong class="jxr_keyword">null</strong> &amp;&amp; props.containsKey(key)) {
-<a class="jxr_linenumber" name="L2268" href="#L2268">2268</a>             <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L2269" href="#L2269">2269</a>                 ps.setFloat(i, Float.parseFloat(props.get(key).toString()));
-<a class="jxr_linenumber" name="L2270" href="#L2270">2270</a>             } <strong class="jxr_keyword">catch</strong> (NumberFormatException nfe) {
-<a class="jxr_linenumber" name="L2271" href="#L2271">2271</a>                 ps.setNull(i, java.sql.Types.FLOAT);
-<a class="jxr_linenumber" name="L2272" href="#L2272">2272</a>             }
-<a class="jxr_linenumber" name="L2273" href="#L2273">2273</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L2274" href="#L2274">2274</a>             ps.setNull(i, java.sql.Types.FLOAT);
-<a class="jxr_linenumber" name="L2275" href="#L2275">2275</a>         }
-<a class="jxr_linenumber" name="L2276" href="#L2276">2276</a>     }
-<a class="jxr_linenumber" name="L2277" href="#L2277">2277</a> 
-<a class="jxr_linenumber" name="L2278" href="#L2278">2278</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2279" href="#L2279">2279</a> <em class="jxr_javadoccomment">     * Sets the string parameter on a prepared statement from a properties map.</em>
-<a class="jxr_linenumber" name="L2280" href="#L2280">2280</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2281" href="#L2281">2281</a> <em class="jxr_javadoccomment">     * @param ps a prepared statement</em>
-<a class="jxr_linenumber" name="L2282" href="#L2282">2282</a> <em class="jxr_javadoccomment">     * @param i the index of the property</em>
-<a class="jxr_linenumber" name="L2283" href="#L2283">2283</a> <em class="jxr_javadoccomment">     * @param props the property collection</em>
-<a class="jxr_linenumber" name="L2284" href="#L2284">2284</a> <em class="jxr_javadoccomment">     * @param key the property key</em>
-<a class="jxr_linenumber" name="L2285" href="#L2285">2285</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error adding the property</em>
-<a class="jxr_linenumber" name="L2286" href="#L2286">2286</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2287" href="#L2287">2287</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setStringValue(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, Map&lt;String, Object&gt; props, String key) <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L2288" href="#L2288">2288</a>         <strong class="jxr_keyword">if</strong> (props != <strong class="jxr_keyword">null</strong> &amp;&amp; props.containsKey(key)) {
-<a class="jxr_linenumber" name="L2289" href="#L2289">2289</a>             ps.setString(i, props.get(key).toString());
-<a class="jxr_linenumber" name="L2290" href="#L2290">2290</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L2291" href="#L2291">2291</a>             ps.setNull(i, java.sql.Types.VARCHAR);
-<a class="jxr_linenumber" name="L2292" href="#L2292">2292</a>         }
-<a class="jxr_linenumber" name="L2293" href="#L2293">2293</a>     }
-<a class="jxr_linenumber" name="L2294" href="#L2294">2294</a> 
-<a class="jxr_linenumber" name="L2295" href="#L2295">2295</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2296" href="#L2296">2296</a> <em class="jxr_javadoccomment">     * Sets the boolean parameter on a prepared statement from a properties map.</em>
-<a class="jxr_linenumber" name="L2297" href="#L2297">2297</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2298" href="#L2298">2298</a> <em class="jxr_javadoccomment">     * @param ps a prepared statement</em>
-<a class="jxr_linenumber" name="L2299" href="#L2299">2299</a> <em class="jxr_javadoccomment">     * @param i the index of the property</em>
-<a class="jxr_linenumber" name="L2300" href="#L2300">2300</a> <em class="jxr_javadoccomment">     * @param props the property collection</em>
-<a class="jxr_linenumber" name="L2301" href="#L2301">2301</a> <em class="jxr_javadoccomment">     * @param key the property key</em>
-<a class="jxr_linenumber" name="L2302" href="#L2302">2302</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error adding the property</em>
-<a class="jxr_linenumber" name="L2303" href="#L2303">2303</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2304" href="#L2304">2304</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setBooleanValue(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, Map&lt;String, Object&gt; props, String key) <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L2305" href="#L2305">2305</a>         <strong class="jxr_keyword">if</strong> (props != <strong class="jxr_keyword">null</strong> &amp;&amp; props.containsKey(key)) {
-<a class="jxr_linenumber" name="L2306" href="#L2306">2306</a>             ps.setBoolean(i, Boolean.parseBoolean(props.get(key).toString()));
-<a class="jxr_linenumber" name="L2307" href="#L2307">2307</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L2308" href="#L2308">2308</a>             ps.setNull(i, java.sql.Types.BOOLEAN);
-<a class="jxr_linenumber" name="L2309" href="#L2309">2309</a>         }
-<a class="jxr_linenumber" name="L2310" href="#L2310">2310</a>     }
-<a class="jxr_linenumber" name="L2311" href="#L2311">2311</a> 
-<a class="jxr_linenumber" name="L2312" href="#L2312">2312</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2313" href="#L2313">2313</a> <em class="jxr_javadoccomment">     * Returns the Boolean value for the given index; if the value is null then</em>
-<a class="jxr_linenumber" name="L2314" href="#L2314">2314</a> <em class="jxr_javadoccomment">     * null is returned.</em>
-<a class="jxr_linenumber" name="L2315" href="#L2315">2315</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2316" href="#L2316">2316</a> <em class="jxr_javadoccomment">     * @param rs the record set</em>
-<a class="jxr_linenumber" name="L2317" href="#L2317">2317</a> <em class="jxr_javadoccomment">     * @param index the parameter index</em>
-<a class="jxr_linenumber" name="L2318" href="#L2318">2318</a> <em class="jxr_javadoccomment">     * @return the Boolean value; or null</em>
-<a class="jxr_linenumber" name="L2319" href="#L2319">2319</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error obtaining the value</em>
-<a class="jxr_linenumber" name="L2320" href="#L2320">2320</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2321" href="#L2321">2321</a>     @SuppressFBWarnings(<span class="jxr_string">"NP_BOOLEAN_RETURN_NULL"</span>)
-<a class="jxr_linenumber" name="L2322" href="#L2322">2322</a>     <strong class="jxr_keyword">private</strong> Boolean getBooleanValue(ResultSet rs, <strong class="jxr_keyword">int</strong> index) <strong class="jxr_keyword">throws</strong> SQLException {
-<a class="jxr_linenumber" name="L2323" href="#L2323">2323</a>         <strong class="jxr_keyword">if</strong> (rs.getObject(index) == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L2324" href="#L2324">2324</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L2257" href="#L2257">2257</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.ProviderUrgencyType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2258" href="#L2258">2258</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L2259" href="#L2259">2259</a>             ps.setNull(i, java.sql.Types.VARCHAR);
+<a class="jxr_linenumber" name="L2260" href="#L2260">2260</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L2261" href="#L2261">2261</a>             ps.setString(i, value.value());
+<a class="jxr_linenumber" name="L2262" href="#L2262">2262</a>         }
+<a class="jxr_linenumber" name="L2263" href="#L2263">2263</a>     }
+<a class="jxr_linenumber" name="L2264" href="#L2264">2264</a> 
+<a class="jxr_linenumber" name="L2265" href="#L2265">2265</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setUpdateColumn(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, CvssV4Data.SeverityType value) <strong class="jxr_keyword">throws</strong> SQLException  {
+<a class="jxr_linenumber" name="L2266" href="#L2266">2266</a>         <strong class="jxr_keyword">if</strong> (value == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L2267" href="#L2267">2267</a>             ps.setNull(i, java.sql.Types.VARCHAR);
+<a class="jxr_linenumber" name="L2268" href="#L2268">2268</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L2269" href="#L2269">2269</a>             ps.setString(i, value.value());
+<a class="jxr_linenumber" name="L2270" href="#L2270">2270</a>         }
+<a class="jxr_linenumber" name="L2271" href="#L2271">2271</a>     }
+<a class="jxr_linenumber" name="L2272" href="#L2272">2272</a> 
+<a class="jxr_linenumber" name="L2273" href="#L2273">2273</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2274" href="#L2274">2274</a> <em class="jxr_javadoccomment">     * Sets the float parameter on a prepared statement from a properties map.</em>
+<a class="jxr_linenumber" name="L2275" href="#L2275">2275</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2276" href="#L2276">2276</a> <em class="jxr_javadoccomment">     * @param ps a prepared statement</em>
+<a class="jxr_linenumber" name="L2277" href="#L2277">2277</a> <em class="jxr_javadoccomment">     * @param i the index of the property</em>
+<a class="jxr_linenumber" name="L2278" href="#L2278">2278</a> <em class="jxr_javadoccomment">     * @param props the property collection</em>
+<a class="jxr_linenumber" name="L2279" href="#L2279">2279</a> <em class="jxr_javadoccomment">     * @param key the property key</em>
+<a class="jxr_linenumber" name="L2280" href="#L2280">2280</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error adding the property</em>
+<a class="jxr_linenumber" name="L2281" href="#L2281">2281</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2282" href="#L2282">2282</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setFloatValue(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, Map&lt;String, Object&gt; props, String key) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L2283" href="#L2283">2283</a>         <strong class="jxr_keyword">if</strong> (props != <strong class="jxr_keyword">null</strong> &amp;&amp; props.containsKey(key)) {
+<a class="jxr_linenumber" name="L2284" href="#L2284">2284</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L2285" href="#L2285">2285</a>                 ps.setFloat(i, Float.parseFloat(props.get(key).toString()));
+<a class="jxr_linenumber" name="L2286" href="#L2286">2286</a>             } <strong class="jxr_keyword">catch</strong> (NumberFormatException nfe) {
+<a class="jxr_linenumber" name="L2287" href="#L2287">2287</a>                 ps.setNull(i, java.sql.Types.FLOAT);
+<a class="jxr_linenumber" name="L2288" href="#L2288">2288</a>             }
+<a class="jxr_linenumber" name="L2289" href="#L2289">2289</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L2290" href="#L2290">2290</a>             ps.setNull(i, java.sql.Types.FLOAT);
+<a class="jxr_linenumber" name="L2291" href="#L2291">2291</a>         }
+<a class="jxr_linenumber" name="L2292" href="#L2292">2292</a>     }
+<a class="jxr_linenumber" name="L2293" href="#L2293">2293</a> 
+<a class="jxr_linenumber" name="L2294" href="#L2294">2294</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2295" href="#L2295">2295</a> <em class="jxr_javadoccomment">     * Sets the string parameter on a prepared statement from a properties map.</em>
+<a class="jxr_linenumber" name="L2296" href="#L2296">2296</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2297" href="#L2297">2297</a> <em class="jxr_javadoccomment">     * @param ps a prepared statement</em>
+<a class="jxr_linenumber" name="L2298" href="#L2298">2298</a> <em class="jxr_javadoccomment">     * @param i the index of the property</em>
+<a class="jxr_linenumber" name="L2299" href="#L2299">2299</a> <em class="jxr_javadoccomment">     * @param props the property collection</em>
+<a class="jxr_linenumber" name="L2300" href="#L2300">2300</a> <em class="jxr_javadoccomment">     * @param key the property key</em>
+<a class="jxr_linenumber" name="L2301" href="#L2301">2301</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error adding the property</em>
+<a class="jxr_linenumber" name="L2302" href="#L2302">2302</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2303" href="#L2303">2303</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setStringValue(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, Map&lt;String, Object&gt; props, String key) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L2304" href="#L2304">2304</a>         <strong class="jxr_keyword">if</strong> (props != <strong class="jxr_keyword">null</strong> &amp;&amp; props.containsKey(key)) {
+<a class="jxr_linenumber" name="L2305" href="#L2305">2305</a>             ps.setString(i, props.get(key).toString());
+<a class="jxr_linenumber" name="L2306" href="#L2306">2306</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L2307" href="#L2307">2307</a>             ps.setNull(i, java.sql.Types.VARCHAR);
+<a class="jxr_linenumber" name="L2308" href="#L2308">2308</a>         }
+<a class="jxr_linenumber" name="L2309" href="#L2309">2309</a>     }
+<a class="jxr_linenumber" name="L2310" href="#L2310">2310</a> 
+<a class="jxr_linenumber" name="L2311" href="#L2311">2311</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2312" href="#L2312">2312</a> <em class="jxr_javadoccomment">     * Sets the boolean parameter on a prepared statement from a properties map.</em>
+<a class="jxr_linenumber" name="L2313" href="#L2313">2313</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2314" href="#L2314">2314</a> <em class="jxr_javadoccomment">     * @param ps a prepared statement</em>
+<a class="jxr_linenumber" name="L2315" href="#L2315">2315</a> <em class="jxr_javadoccomment">     * @param i the index of the property</em>
+<a class="jxr_linenumber" name="L2316" href="#L2316">2316</a> <em class="jxr_javadoccomment">     * @param props the property collection</em>
+<a class="jxr_linenumber" name="L2317" href="#L2317">2317</a> <em class="jxr_javadoccomment">     * @param key the property key</em>
+<a class="jxr_linenumber" name="L2318" href="#L2318">2318</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error adding the property</em>
+<a class="jxr_linenumber" name="L2319" href="#L2319">2319</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2320" href="#L2320">2320</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> setBooleanValue(PreparedStatement ps, <strong class="jxr_keyword">int</strong> i, Map&lt;String, Object&gt; props, String key) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L2321" href="#L2321">2321</a>         <strong class="jxr_keyword">if</strong> (props != <strong class="jxr_keyword">null</strong> &amp;&amp; props.containsKey(key)) {
+<a class="jxr_linenumber" name="L2322" href="#L2322">2322</a>             ps.setBoolean(i, Boolean.parseBoolean(props.get(key).toString()));
+<a class="jxr_linenumber" name="L2323" href="#L2323">2323</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L2324" href="#L2324">2324</a>             ps.setNull(i, java.sql.Types.BOOLEAN);
 <a class="jxr_linenumber" name="L2325" href="#L2325">2325</a>         }
-<a class="jxr_linenumber" name="L2326" href="#L2326">2326</a>         <strong class="jxr_keyword">return</strong> rs.getBoolean(index);
-<a class="jxr_linenumber" name="L2327" href="#L2327">2327</a>     }
-<a class="jxr_linenumber" name="L2328" href="#L2328">2328</a> 
-<a class="jxr_linenumber" name="L2329" href="#L2329">2329</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2330" href="#L2330">2330</a> <em class="jxr_javadoccomment">     * Returns the Float value for the given index; if the value is null then</em>
-<a class="jxr_linenumber" name="L2331" href="#L2331">2331</a> <em class="jxr_javadoccomment">     * null is returned.</em>
-<a class="jxr_linenumber" name="L2332" href="#L2332">2332</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L2333" href="#L2333">2333</a> <em class="jxr_javadoccomment">     * @param rs the record set</em>
-<a class="jxr_linenumber" name="L2334" href="#L2334">2334</a> <em class="jxr_javadoccomment">     * @param index the parameter index</em>
-<a class="jxr_linenumber" name="L2335" href="#L2335">2335</a> <em class="jxr_javadoccomment">     * @return the Float value; or null</em>
-<a class="jxr_linenumber" name="L2336" href="#L2336">2336</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error obtaining the value</em>
-<a class="jxr_linenumber" name="L2337" href="#L2337">2337</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L2338" href="#L2338">2338</a>     <strong class="jxr_keyword">private</strong> Float getFloatValue(ResultSet rs, <strong class="jxr_keyword">int</strong> index) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L2326" href="#L2326">2326</a>     }
+<a class="jxr_linenumber" name="L2327" href="#L2327">2327</a> 
+<a class="jxr_linenumber" name="L2328" href="#L2328">2328</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2329" href="#L2329">2329</a> <em class="jxr_javadoccomment">     * Returns the Boolean value for the given index; if the value is null then</em>
+<a class="jxr_linenumber" name="L2330" href="#L2330">2330</a> <em class="jxr_javadoccomment">     * null is returned.</em>
+<a class="jxr_linenumber" name="L2331" href="#L2331">2331</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2332" href="#L2332">2332</a> <em class="jxr_javadoccomment">     * @param rs the record set</em>
+<a class="jxr_linenumber" name="L2333" href="#L2333">2333</a> <em class="jxr_javadoccomment">     * @param index the parameter index</em>
+<a class="jxr_linenumber" name="L2334" href="#L2334">2334</a> <em class="jxr_javadoccomment">     * @return the Boolean value; or null</em>
+<a class="jxr_linenumber" name="L2335" href="#L2335">2335</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error obtaining the value</em>
+<a class="jxr_linenumber" name="L2336" href="#L2336">2336</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2337" href="#L2337">2337</a>     @SuppressFBWarnings(<span class="jxr_string">"NP_BOOLEAN_RETURN_NULL"</span>)
+<a class="jxr_linenumber" name="L2338" href="#L2338">2338</a>     <strong class="jxr_keyword">private</strong> Boolean getBooleanValue(ResultSet rs, <strong class="jxr_keyword">int</strong> index) <strong class="jxr_keyword">throws</strong> SQLException {
 <a class="jxr_linenumber" name="L2339" href="#L2339">2339</a>         <strong class="jxr_keyword">if</strong> (rs.getObject(index) == <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L2340" href="#L2340">2340</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L2341" href="#L2341">2341</a>         }
-<a class="jxr_linenumber" name="L2342" href="#L2342">2342</a>         <strong class="jxr_keyword">return</strong> rs.getFloat(index);
+<a class="jxr_linenumber" name="L2342" href="#L2342">2342</a>         <strong class="jxr_keyword">return</strong> rs.getBoolean(index);
 <a class="jxr_linenumber" name="L2343" href="#L2343">2343</a>     }
-<a class="jxr_linenumber" name="L2344" href="#L2344">2344</a> }
+<a class="jxr_linenumber" name="L2344" href="#L2344">2344</a> 
+<a class="jxr_linenumber" name="L2345" href="#L2345">2345</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L2346" href="#L2346">2346</a> <em class="jxr_javadoccomment">     * Returns the Float value for the given index; if the value is null then</em>
+<a class="jxr_linenumber" name="L2347" href="#L2347">2347</a> <em class="jxr_javadoccomment">     * null is returned.</em>
+<a class="jxr_linenumber" name="L2348" href="#L2348">2348</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L2349" href="#L2349">2349</a> <em class="jxr_javadoccomment">     * @param rs the record set</em>
+<a class="jxr_linenumber" name="L2350" href="#L2350">2350</a> <em class="jxr_javadoccomment">     * @param index the parameter index</em>
+<a class="jxr_linenumber" name="L2351" href="#L2351">2351</a> <em class="jxr_javadoccomment">     * @return the Float value; or null</em>
+<a class="jxr_linenumber" name="L2352" href="#L2352">2352</a> <em class="jxr_javadoccomment">     * @throws SQLException thrown if there is an error obtaining the value</em>
+<a class="jxr_linenumber" name="L2353" href="#L2353">2353</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L2354" href="#L2354">2354</a>     <strong class="jxr_keyword">private</strong> Float getFloatValue(ResultSet rs, <strong class="jxr_keyword">int</strong> index) <strong class="jxr_keyword">throws</strong> SQLException {
+<a class="jxr_linenumber" name="L2355" href="#L2355">2355</a>         <strong class="jxr_keyword">if</strong> (rs.getObject(index) == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L2356" href="#L2356">2356</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L2357" href="#L2357">2357</a>         }
+<a class="jxr_linenumber" name="L2358" href="#L2358">2358</a>         <strong class="jxr_keyword">return</strong> rs.getFloat(index);
+<a class="jxr_linenumber" name="L2359" href="#L2359">2359</a>     }
+<a class="jxr_linenumber" name="L2360" href="#L2360">2360</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2012&#x2013;2025 <a href="https://www.owasp.org">OWASP</a>. All rights reserved.</div>

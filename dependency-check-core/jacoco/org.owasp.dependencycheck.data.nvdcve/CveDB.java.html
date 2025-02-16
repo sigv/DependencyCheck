@@ -929,20 +929,20 @@ public final class CveDB implements AutoCloseable {
 <span class="nc bnc" id="L929" title="All 2 branches missed.">                        if (value != null) {</span>
 <span class="nc" id="L930">                            modifiedVulnAvailabilityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);</span>
                         }
-<span class="nc" id="L932">                        CvssV4Data.ModifiedCiaType modifiedSubConfidentialityImpact = null;</span>
+<span class="nc" id="L932">                        CvssV4Data.ModifiedSubCType modifiedSubConfidentialityImpact = null;</span>
 <span class="nc" id="L933">                        value = rsV.getString(56);</span>
 <span class="nc bnc" id="L934" title="All 2 branches missed.">                        if (value != null) {</span>
-<span class="nc" id="L935">                            modifiedSubConfidentialityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);</span>
+<span class="nc" id="L935">                            modifiedSubConfidentialityImpact = CvssV4Data.ModifiedSubCType.fromValue(value);</span>
                         }
-<span class="nc" id="L937">                        CvssV4Data.ModifiedCiaType modifiedSubIntegrityImpact = null;</span>
+<span class="nc" id="L937">                        CvssV4Data.ModifiedSubIaType modifiedSubIntegrityImpact = null;</span>
 <span class="nc" id="L938">                        value = rsV.getString(57);</span>
 <span class="nc bnc" id="L939" title="All 2 branches missed.">                        if (value != null) {</span>
-<span class="nc" id="L940">                            modifiedSubIntegrityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);</span>
+<span class="nc" id="L940">                            modifiedSubIntegrityImpact = CvssV4Data.ModifiedSubIaType.fromValue(value);</span>
                         }
-<span class="nc" id="L942">                        CvssV4Data.ModifiedCiaType modifiedSubAvailabilityImpact = null;</span>
+<span class="nc" id="L942">                        CvssV4Data.ModifiedSubIaType modifiedSubAvailabilityImpact = null;</span>
 <span class="nc" id="L943">                        value = rsV.getString(58);</span>
 <span class="nc bnc" id="L944" title="All 2 branches missed.">                        if (value != null) {</span>
-<span class="nc" id="L945">                            modifiedSubAvailabilityImpact = CvssV4Data.ModifiedCiaType.fromValue(value);</span>
+<span class="nc" id="L945">                            modifiedSubAvailabilityImpact = CvssV4Data.ModifiedSubIaType.fromValue(value);</span>
                         }
 <span class="nc" id="L947">                        CvssV4Data.SafetyType safety = null;</span>
 <span class="nc" id="L948">                        value = rsV.getString(59);</span>
@@ -2198,7 +2198,7 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2199">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.SafetyType value) throws SQLException  {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.ModifiedSubCType value) throws SQLException  {
 <span class="nc bnc" id="L2202" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2203">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
@@ -2206,7 +2206,7 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2207">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.AutomatableType value) throws SQLException  {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.ModifiedSubIaType value) throws SQLException  {
 <span class="nc bnc" id="L2210" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2211">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
@@ -2214,7 +2214,7 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2215">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.RecoveryType value)  throws SQLException {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.SafetyType value) throws SQLException  {
 <span class="nc bnc" id="L2218" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2219">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
@@ -2222,7 +2222,7 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2223">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.ValueDensityType value) throws SQLException  {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.AutomatableType value) throws SQLException  {
 <span class="nc bnc" id="L2226" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2227">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
@@ -2230,7 +2230,7 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2231">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.VulnerabilityResponseEffortType value) throws SQLException  {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.RecoveryType value)  throws SQLException {
 <span class="nc bnc" id="L2234" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2235">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
@@ -2238,7 +2238,7 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2239">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.ProviderUrgencyType value) throws SQLException  {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.ValueDensityType value) throws SQLException  {
 <span class="nc bnc" id="L2242" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2243">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
@@ -2246,13 +2246,29 @@ public final class CveDB implements AutoCloseable {
         }
 <span class="nc" id="L2247">    }</span>
 
-    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.SeverityType value) throws SQLException  {
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.VulnerabilityResponseEffortType value) throws SQLException  {
 <span class="nc bnc" id="L2250" title="All 2 branches missed.">        if (value == null) {</span>
 <span class="nc" id="L2251">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         } else {
 <span class="nc" id="L2253">            ps.setString(i, value.value());</span>
         }
 <span class="nc" id="L2255">    }</span>
+
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.ProviderUrgencyType value) throws SQLException  {
+<span class="nc bnc" id="L2258" title="All 2 branches missed.">        if (value == null) {</span>
+<span class="nc" id="L2259">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
+        } else {
+<span class="nc" id="L2261">            ps.setString(i, value.value());</span>
+        }
+<span class="nc" id="L2263">    }</span>
+
+    private void setUpdateColumn(PreparedStatement ps, int i, CvssV4Data.SeverityType value) throws SQLException  {
+<span class="nc bnc" id="L2266" title="All 2 branches missed.">        if (value == null) {</span>
+<span class="nc" id="L2267">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
+        } else {
+<span class="nc" id="L2269">            ps.setString(i, value.value());</span>
+        }
+<span class="nc" id="L2271">    }</span>
 
     /**
      * Sets the float parameter on a prepared statement from a properties map.
@@ -2264,16 +2280,16 @@ public final class CveDB implements AutoCloseable {
      * @throws SQLException thrown if there is an error adding the property
      */
     private void setFloatValue(PreparedStatement ps, int i, Map&lt;String, Object&gt; props, String key) throws SQLException {
-<span class="nc bnc" id="L2267" title="All 4 branches missed.">        if (props != null &amp;&amp; props.containsKey(key)) {</span>
+<span class="nc bnc" id="L2283" title="All 4 branches missed.">        if (props != null &amp;&amp; props.containsKey(key)) {</span>
             try {
-<span class="nc" id="L2269">                ps.setFloat(i, Float.parseFloat(props.get(key).toString()));</span>
-<span class="nc" id="L2270">            } catch (NumberFormatException nfe) {</span>
-<span class="nc" id="L2271">                ps.setNull(i, java.sql.Types.FLOAT);</span>
-<span class="nc" id="L2272">            }</span>
+<span class="nc" id="L2285">                ps.setFloat(i, Float.parseFloat(props.get(key).toString()));</span>
+<span class="nc" id="L2286">            } catch (NumberFormatException nfe) {</span>
+<span class="nc" id="L2287">                ps.setNull(i, java.sql.Types.FLOAT);</span>
+<span class="nc" id="L2288">            }</span>
         } else {
-<span class="nc" id="L2274">            ps.setNull(i, java.sql.Types.FLOAT);</span>
+<span class="nc" id="L2290">            ps.setNull(i, java.sql.Types.FLOAT);</span>
         }
-<span class="nc" id="L2276">    }</span>
+<span class="nc" id="L2292">    }</span>
 
     /**
      * Sets the string parameter on a prepared statement from a properties map.
@@ -2285,12 +2301,12 @@ public final class CveDB implements AutoCloseable {
      * @throws SQLException thrown if there is an error adding the property
      */
     private void setStringValue(PreparedStatement ps, int i, Map&lt;String, Object&gt; props, String key) throws SQLException {
-<span class="nc bnc" id="L2288" title="All 4 branches missed.">        if (props != null &amp;&amp; props.containsKey(key)) {</span>
-<span class="nc" id="L2289">            ps.setString(i, props.get(key).toString());</span>
+<span class="nc bnc" id="L2304" title="All 4 branches missed.">        if (props != null &amp;&amp; props.containsKey(key)) {</span>
+<span class="nc" id="L2305">            ps.setString(i, props.get(key).toString());</span>
         } else {
-<span class="nc" id="L2291">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
+<span class="nc" id="L2307">            ps.setNull(i, java.sql.Types.VARCHAR);</span>
         }
-<span class="nc" id="L2293">    }</span>
+<span class="nc" id="L2309">    }</span>
 
     /**
      * Sets the boolean parameter on a prepared statement from a properties map.
@@ -2302,12 +2318,12 @@ public final class CveDB implements AutoCloseable {
      * @throws SQLException thrown if there is an error adding the property
      */
     private void setBooleanValue(PreparedStatement ps, int i, Map&lt;String, Object&gt; props, String key) throws SQLException {
-<span class="nc bnc" id="L2305" title="All 4 branches missed.">        if (props != null &amp;&amp; props.containsKey(key)) {</span>
-<span class="nc" id="L2306">            ps.setBoolean(i, Boolean.parseBoolean(props.get(key).toString()));</span>
+<span class="nc bnc" id="L2321" title="All 4 branches missed.">        if (props != null &amp;&amp; props.containsKey(key)) {</span>
+<span class="nc" id="L2322">            ps.setBoolean(i, Boolean.parseBoolean(props.get(key).toString()));</span>
         } else {
-<span class="nc" id="L2308">            ps.setNull(i, java.sql.Types.BOOLEAN);</span>
+<span class="nc" id="L2324">            ps.setNull(i, java.sql.Types.BOOLEAN);</span>
         }
-<span class="nc" id="L2310">    }</span>
+<span class="nc" id="L2326">    }</span>
 
     /**
      * Returns the Boolean value for the given index; if the value is null then
@@ -2320,10 +2336,10 @@ public final class CveDB implements AutoCloseable {
      */
     @SuppressFBWarnings(&quot;NP_BOOLEAN_RETURN_NULL&quot;)
     private Boolean getBooleanValue(ResultSet rs, int index) throws SQLException {
-<span class="nc bnc" id="L2323" title="All 2 branches missed.">        if (rs.getObject(index) == null) {</span>
-<span class="nc" id="L2324">            return null;</span>
+<span class="nc bnc" id="L2339" title="All 2 branches missed.">        if (rs.getObject(index) == null) {</span>
+<span class="nc" id="L2340">            return null;</span>
         }
-<span class="nc" id="L2326">        return rs.getBoolean(index);</span>
+<span class="nc" id="L2342">        return rs.getBoolean(index);</span>
     }
 
     /**
@@ -2336,10 +2352,10 @@ public final class CveDB implements AutoCloseable {
      * @throws SQLException thrown if there is an error obtaining the value
      */
     private Float getFloatValue(ResultSet rs, int index) throws SQLException {
-<span class="nc bnc" id="L2339" title="All 2 branches missed.">        if (rs.getObject(index) == null) {</span>
-<span class="nc" id="L2340">            return null;</span>
+<span class="nc bnc" id="L2355" title="All 2 branches missed.">        if (rs.getObject(index) == null) {</span>
+<span class="nc" id="L2356">            return null;</span>
         }
-<span class="nc" id="L2342">        return rs.getFloat(index);</span>
+<span class="nc" id="L2358">        return rs.getFloat(index);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

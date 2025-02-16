@@ -458,7 +458,7 @@ import us.springett.parsers.cpe.values.Part;
 <span class="fc bfc" id="L458" title="All 2 branches covered.">            for (String cwe : advisory.getCwes()) {</span>
 <span class="fc" id="L459">                vuln.addCwe(cwe);</span>
 <span class="fc" id="L460">            }</span>
-<span class="pc bpc" id="L461" title="1 of 2 branches missed.">            if (advisory.getReferences() != null) {</span>
+<span class="fc bfc" id="L461" title="All 2 branches covered.">            if (advisory.getReferences() != null) {</span>
 <span class="fc" id="L462">                final String[] references = advisory.getReferences().split(&quot;\\n&quot;);</span>
 <span class="fc bfc" id="L463" title="All 2 branches covered.">                for (String reference : references) {</span>
 <span class="pc bpc" id="L464" title="1 of 2 branches missed.">                    if (reference.length() &gt; 3) {</span>

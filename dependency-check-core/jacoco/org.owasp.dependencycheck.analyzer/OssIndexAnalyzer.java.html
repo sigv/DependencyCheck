@@ -271,7 +271,7 @@ import org.sonatype.ossindex.service.client.transport.Transport.TransportExcepti
 <span class="nc" id="L271">                                            .orElse(null);</span>
 <span class="nc bnc" id="L272" title="All 2 branches missed.">                                    if (existing != null) {</span>
                                         //TODO - can we enhance anything other than the references?
-<span class="nc" id="L274">                                        existing.getReferences().addAll(v.getReferences());</span>
+<span class="nc" id="L274">                                        existing.addReferences(v.getReferences());</span>
                                     } else {
 <span class="nc" id="L276">                                        dependency.addVulnerability(v);</span>
                                     }
