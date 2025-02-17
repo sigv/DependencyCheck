@@ -2160,3 +2160,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:nuget/Serilog\.Sinks\.Graylog@.*$</packageUrl>
    <cpe>cpe:/a:graylog:graylog</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7403
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.hazelcast\.marketing/hazelcast-license-extractor@.*$</packageUrl>
+   <cpe>cpe:/a:hazelcast:hazelcast</cpe>
+</suppress>
