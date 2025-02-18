@@ -2175,4 +2175,11 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/com\.google\.devtools\.ksp/symbol-processing@.*$</packageUrl>
    <cpe>cpe:/a:processing:processing</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7425
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.google\.devtools\.ksp/symbol-processing-cmdline@.*$</packageUrl>
+   <cpe>cpe:/a:processing:processing</cpe>
+</suppress>
 </suppressions>
