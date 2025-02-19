@@ -2174,3 +2174,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
 <packageUrl regex="true">^pkg:maven/com\.azure\.resourcemanager/.*$</packageUrl>
 <cpe>cpe:/a:microsoft:azure_cli</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #5527
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.apache\.sling/org\.apache\.sling\.javax\.activation@.*$</packageUrl>
+   <cpe>cpe:/a:apache:sling</cpe>
+</suppress>
