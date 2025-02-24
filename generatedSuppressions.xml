@@ -2195,3 +2195,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/org\.eclipse\.platform/org\.eclipse\.osgi@.*$</packageUrl>
    <cpe>cpe:/a:eclipse:equinox</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7448
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.nlopez\.compose\.rules/detekt@.*$</packageUrl>
+   <cpe>cpe:/a:detekt:detekt</cpe>
+</suppress>
