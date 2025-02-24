@@ -2203,4 +2203,11 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/io\.nlopez\.compose\.rules/detekt@.*$</packageUrl>
    <cpe>cpe:/a:detekt:detekt</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7464
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/io\.quarkiverse\.wiremock/quarkus-wiremock@.*$</packageUrl>
+   <cpe>cpe:/a:wiremock:wiremock</cpe>
+</suppress>
 </suppressions>
