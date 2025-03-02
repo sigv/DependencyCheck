@@ -2209,3 +2209,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/io\.quarkiverse\.wiremock/quarkus-wiremock@.*$</packageUrl>
    <cpe>cpe:/a:wiremock:wiremock</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7487
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.seleniumhq\.selenium/selenium-chromium-driver@.*$</packageUrl>
+   <cpe>cpe:/a:chromium_project:chromium</cpe>
+</suppress>
