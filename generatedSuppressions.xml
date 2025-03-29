@@ -2223,3 +2223,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/com\.github\.jpmsilva\.jsystemd/jsystemd-core@.*$</packageUrl>
    <cpe>cpe:/a:systemd_project:systemd</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7556
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/com\.azure/azure-ai-openai@.*$</packageUrl>
+   <cpe>cpe:/a:microsoft:azure_cli</cpe>
+</suppress>
