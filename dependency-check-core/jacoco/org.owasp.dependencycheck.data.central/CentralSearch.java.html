@@ -106,11 +106,11 @@ public class CentralSearch {
 <span class="fc" id="L106">        this.query = queryStr;</span>
 <span class="fc" id="L107">        LOGGER.debug(&quot;Central Search Full URL: {}&quot;, String.format(query, rootURL, &quot;[SHA1]&quot;));</span>
 <span class="pc bpc" id="L108" title="2 of 4 branches missed.">        if (null != settings.getString(Settings.KEYS.PROXY_SERVER) || null != System.getProperty(&quot;https.proxyHost&quot;)) {</span>
-<span class="nc" id="L109">            useProxy = true;</span>
-<span class="nc" id="L110">            LOGGER.debug(&quot;Using proxy&quot;);</span>
+<span class="fc" id="L109">            useProxy = true;</span>
+<span class="fc" id="L110">            LOGGER.debug(&quot;Using proxy&quot;);</span>
         } else {
-<span class="fc" id="L112">            useProxy = false;</span>
-<span class="fc" id="L113">            LOGGER.debug(&quot;Not using proxy&quot;);</span>
+<span class="nc" id="L112">            useProxy = false;</span>
+<span class="nc" id="L113">            LOGGER.debug(&quot;Not using proxy&quot;);</span>
         }
 <span class="pc bpc" id="L115" title="1 of 2 branches missed.">        if (settings.getBoolean(Settings.KEYS.ANALYZER_CENTRAL_USE_CACHE, true)) {</span>
             try {
@@ -255,4 +255,4 @@ public class CentralSearch {
     }
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

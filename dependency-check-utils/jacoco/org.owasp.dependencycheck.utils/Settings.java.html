@@ -1455,6 +1455,31 @@ public final class Settings {
     }
 
     /**
+     * Returns a long value from the properties file. If the value was specified
+     * as a system property or passed in via the -Dprop=value argument - this
+     * method will return the value from the system properties before the values
+     * in the contained configuration file.
+     *
+     * @param key the key to lookup within the properties file
+     * @param defaultValue the default value to return
+     * @return the property from the properties file or the defaultValue if the
+     * property does not exist or cannot be converted to an integer
+     */
+    public long getLong(@NotNull final String key, long defaultValue) {
+        long value;
+        try {
+<span class="nc" id="L1471">            value = Long.parseLong(getString(key));</span>
+<span class="fc" id="L1472">        } catch (NumberFormatException ex) {</span>
+<span class="pc bpc" id="L1473" title="1 of 2 branches missed.">            if (!getString(key, &quot;&quot;).isEmpty()) {</span>
+<span class="nc" id="L1474">                LOGGER.debug(&quot;Could not convert property '{}={}' to a long; using {} instead.&quot;,</span>
+<span class="nc" id="L1475">                        key, getPrintableValue(key, getString(key)), defaultValue);</span>
+            }
+<span class="fc" id="L1477">            value = defaultValue;</span>
+<span class="nc" id="L1478">        }</span>
+<span class="fc" id="L1479">        return value;</span>
+    }
+
+    /**
      * Returns a boolean value from the properties file. If the value was
      * specified as a system property or passed in via the
      * &lt;code&gt;-Dprop=value&lt;/code&gt; argument this method will return the value from
@@ -1467,7 +1492,7 @@ public final class Settings {
      * if there is an error retrieving the setting
      */
     public boolean getBoolean(@NotNull final String key) throws InvalidSettingException {
-<span class="fc" id="L1470">        return Boolean.parseBoolean(getString(key));</span>
+<span class="fc" id="L1495">        return Boolean.parseBoolean(getString(key));</span>
     }
 
     /**
@@ -1483,7 +1508,7 @@ public final class Settings {
      * @return the property from the properties file
      */
     public boolean getBoolean(@NotNull final String key, boolean defaultValue) {
-<span class="fc" id="L1486">        return Boolean.parseBoolean(getString(key, Boolean.toString(defaultValue)));</span>
+<span class="fc" id="L1511">        return Boolean.parseBoolean(getString(key, Boolean.toString(defaultValue)));</span>
     }
 
     /**
@@ -1499,13 +1524,13 @@ public final class Settings {
      * @return the property from the properties file
      */
     public float getFloat(@NotNull final String key, float defaultValue) {
-<span class="nc" id="L1502">        float retValue = defaultValue;</span>
+<span class="nc" id="L1527">        float retValue = defaultValue;</span>
         try {
-<span class="nc" id="L1504">            retValue = Float.parseFloat(getString(key));</span>
-<span class="nc" id="L1505">        } catch (Throwable ex) {</span>
-<span class="nc" id="L1506">            LOGGER.trace(&quot;ignore&quot;, ex);</span>
-<span class="nc" id="L1507">        }</span>
-<span class="nc" id="L1508">        return retValue;</span>
+<span class="nc" id="L1529">            retValue = Float.parseFloat(getString(key));</span>
+<span class="nc" id="L1530">        } catch (Throwable ex) {</span>
+<span class="nc" id="L1531">            LOGGER.trace(&quot;ignore&quot;, ex);</span>
+<span class="nc" id="L1532">        }</span>
+<span class="nc" id="L1533">        return retValue;</span>
     }
 
     /**
@@ -1523,33 +1548,33 @@ public final class Settings {
      */
     public String getConnectionString(String connectionStringKey, String dbFileNameKey)
             throws IOException, InvalidSettingException {
-<span class="fc" id="L1526">        final String connStr = getString(connectionStringKey);</span>
-<span class="fc bfc" id="L1527" title="All 2 branches covered.">        if (connStr == null) {</span>
-<span class="fc" id="L1528">            final String msg = String.format(&quot;Invalid properties file; %s is missing.&quot;, connectionStringKey);</span>
-<span class="fc" id="L1529">            throw new InvalidSettingException(msg);</span>
+<span class="fc" id="L1551">        final String connStr = getString(connectionStringKey);</span>
+<span class="fc bfc" id="L1552" title="All 2 branches covered.">        if (connStr == null) {</span>
+<span class="fc" id="L1553">            final String msg = String.format(&quot;Invalid properties file; %s is missing.&quot;, connectionStringKey);</span>
+<span class="fc" id="L1554">            throw new InvalidSettingException(msg);</span>
         }
-<span class="pc bpc" id="L1531" title="1 of 2 branches missed.">        if (connStr.contains(&quot;%s&quot;)) {</span>
-<span class="fc" id="L1532">            final File directory = getH2DataDirectory();</span>
-<span class="fc" id="L1533">            LOGGER.debug(&quot;Data directory: {}&quot;, directory);</span>
-<span class="fc" id="L1534">            String fileName = null;</span>
-<span class="pc bpc" id="L1535" title="1 of 2 branches missed.">            if (dbFileNameKey != null) {</span>
-<span class="fc" id="L1536">                fileName = getString(dbFileNameKey);</span>
+<span class="pc bpc" id="L1556" title="1 of 2 branches missed.">        if (connStr.contains(&quot;%s&quot;)) {</span>
+<span class="fc" id="L1557">            final File directory = getH2DataDirectory();</span>
+<span class="fc" id="L1558">            LOGGER.debug(&quot;Data directory: {}&quot;, directory);</span>
+<span class="fc" id="L1559">            String fileName = null;</span>
+<span class="pc bpc" id="L1560" title="1 of 2 branches missed.">            if (dbFileNameKey != null) {</span>
+<span class="fc" id="L1561">                fileName = getString(dbFileNameKey);</span>
             }
-<span class="pc bpc" id="L1538" title="1 of 2 branches missed.">            if (fileName == null) {</span>
-<span class="nc" id="L1539">                final String msg = String.format(&quot;Invalid properties file to get a file based connection string; '%s' must be defined.&quot;,</span>
+<span class="pc bpc" id="L1563" title="1 of 2 branches missed.">            if (fileName == null) {</span>
+<span class="nc" id="L1564">                final String msg = String.format(&quot;Invalid properties file to get a file based connection string; '%s' must be defined.&quot;,</span>
                         dbFileNameKey);
-<span class="nc" id="L1541">                throw new InvalidSettingException(msg);</span>
+<span class="nc" id="L1566">                throw new InvalidSettingException(msg);</span>
             }
-<span class="pc bpc" id="L1543" title="2 of 4 branches missed.">            if (connStr.startsWith(&quot;jdbc:h2:file:&quot;) &amp;&amp; fileName.endsWith(&quot;.mv.db&quot;)) {</span>
-<span class="fc" id="L1544">                fileName = fileName.substring(0, fileName.length() - 6);</span>
+<span class="pc bpc" id="L1568" title="2 of 4 branches missed.">            if (connStr.startsWith(&quot;jdbc:h2:file:&quot;) &amp;&amp; fileName.endsWith(&quot;.mv.db&quot;)) {</span>
+<span class="fc" id="L1569">                fileName = fileName.substring(0, fileName.length() - 6);</span>
             }
             // yes, for H2 this path won't actually exists - but this is sufficient to get the value needed
-<span class="fc" id="L1547">            final File dbFile = new File(directory, fileName);</span>
-<span class="fc" id="L1548">            final String cString = String.format(connStr, dbFile.getCanonicalPath());</span>
-<span class="fc" id="L1549">            LOGGER.debug(&quot;Connection String: '{}'&quot;, cString);</span>
-<span class="fc" id="L1550">            return cString;</span>
+<span class="fc" id="L1572">            final File dbFile = new File(directory, fileName);</span>
+<span class="fc" id="L1573">            final String cString = String.format(connStr, dbFile.getCanonicalPath());</span>
+<span class="fc" id="L1574">            LOGGER.debug(&quot;Connection String: '{}'&quot;, cString);</span>
+<span class="fc" id="L1575">            return cString;</span>
         }
-<span class="nc" id="L1552">        return connStr;</span>
+<span class="nc" id="L1577">        return connStr;</span>
     }
 
     /**
@@ -1561,12 +1586,12 @@ public final class Settings {
      * course...
      */
     public File getDataDirectory() throws IOException {
-<span class="nc" id="L1564">        final File path = getDataFile(Settings.KEYS.DATA_DIRECTORY);</span>
-<span class="nc bnc" id="L1565" title="All 6 branches missed.">        if (path != null &amp;&amp; (path.exists() || path.mkdirs())) {</span>
-<span class="nc" id="L1566">            return path;</span>
+<span class="nc" id="L1589">        final File path = getDataFile(Settings.KEYS.DATA_DIRECTORY);</span>
+<span class="nc bnc" id="L1590" title="All 6 branches missed.">        if (path != null &amp;&amp; (path.exists() || path.mkdirs())) {</span>
+<span class="nc" id="L1591">            return path;</span>
         }
-<span class="nc" id="L1568">        throw new IOException(String.format(&quot;Unable to create the data directory '%s'&quot;,</span>
-<span class="nc bnc" id="L1569" title="All 2 branches missed.">                (path == null) ? &quot;unknown&quot; : path.getAbsolutePath()));</span>
+<span class="nc" id="L1593">        throw new IOException(String.format(&quot;Unable to create the data directory '%s'&quot;,</span>
+<span class="nc bnc" id="L1594" title="All 2 branches missed.">                (path == null) ? &quot;unknown&quot; : path.getAbsolutePath()));</span>
     }
 
     /**
@@ -1578,18 +1603,18 @@ public final class Settings {
      * course...
      */
     public File getH2DataDirectory() throws IOException {
-<span class="fc" id="L1581">        final String h2Test = getString(Settings.KEYS.H2_DATA_DIRECTORY);</span>
+<span class="fc" id="L1606">        final String h2Test = getString(Settings.KEYS.H2_DATA_DIRECTORY);</span>
         final File path;
-<span class="pc bpc" id="L1583" title="3 of 4 branches missed.">        if (h2Test != null &amp;&amp; !h2Test.isEmpty()) {</span>
-<span class="nc" id="L1584">            path = getDataFile(Settings.KEYS.H2_DATA_DIRECTORY);</span>
+<span class="pc bpc" id="L1608" title="3 of 4 branches missed.">        if (h2Test != null &amp;&amp; !h2Test.isEmpty()) {</span>
+<span class="nc" id="L1609">            path = getDataFile(Settings.KEYS.H2_DATA_DIRECTORY);</span>
         } else {
-<span class="fc" id="L1586">            path = getDataFile(Settings.KEYS.DATA_DIRECTORY);</span>
+<span class="fc" id="L1611">            path = getDataFile(Settings.KEYS.DATA_DIRECTORY);</span>
         }
-<span class="pc bpc" id="L1588" title="3 of 6 branches missed.">        if (path != null &amp;&amp; (path.exists() || path.mkdirs())) {</span>
-<span class="fc" id="L1589">            return path;</span>
+<span class="pc bpc" id="L1613" title="3 of 6 branches missed.">        if (path != null &amp;&amp; (path.exists() || path.mkdirs())) {</span>
+<span class="fc" id="L1614">            return path;</span>
         }
-<span class="nc" id="L1591">        throw new IOException(String.format(&quot;Unable to create the h2 data directory '%s'&quot;,</span>
-<span class="nc bnc" id="L1592" title="All 2 branches missed.">                (path == null) ? &quot;unknown&quot; : path.getAbsolutePath()));</span>
+<span class="nc" id="L1616">        throw new IOException(String.format(&quot;Unable to create the h2 data directory '%s'&quot;,</span>
+<span class="nc bnc" id="L1617" title="All 2 branches missed.">                (path == null) ? &quot;unknown&quot; : path.getAbsolutePath()));</span>
     }
 
     /**
@@ -1601,13 +1626,13 @@ public final class Settings {
      * @throws java.io.IOException if any.
      */
     public File getTempFile(@NotNull final String prefix, @NotNull final String extension) throws IOException {
-<span class="nc" id="L1604">        final File dir = getTempDirectory();</span>
-<span class="nc" id="L1605">        final String tempFileName = String.format(&quot;%s%s.%s&quot;, prefix, UUID.randomUUID(), extension);</span>
-<span class="nc" id="L1606">        final File tempFile = new File(dir, tempFileName);</span>
-<span class="nc bnc" id="L1607" title="All 2 branches missed.">        if (tempFile.exists()) {</span>
-<span class="nc" id="L1608">            return getTempFile(prefix, extension);</span>
+<span class="nc" id="L1629">        final File dir = getTempDirectory();</span>
+<span class="nc" id="L1630">        final String tempFileName = String.format(&quot;%s%s.%s&quot;, prefix, UUID.randomUUID(), extension);</span>
+<span class="nc" id="L1631">        final File tempFile = new File(dir, tempFileName);</span>
+<span class="nc bnc" id="L1632" title="All 2 branches missed.">        if (tempFile.exists()) {</span>
+<span class="nc" id="L1633">            return getTempFile(prefix, extension);</span>
         }
-<span class="nc" id="L1610">        return tempFile;</span>
+<span class="nc" id="L1635">        return tempFile;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

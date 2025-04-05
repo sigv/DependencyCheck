@@ -1081,7 +1081,7 @@
 <a class="jxr_linenumber" name="L1073" href="#L1073">1073</a> <em class="jxr_javadoccomment">     * @implNote This method is not intended to cover every possible case where the ecosystem is represented by the word. It is a</em>
 <a class="jxr_linenumber" name="L1074" href="#L1074">1074</a> <em class="jxr_javadoccomment">     * best-effort attempt to prevent {@link #considerDependencyVersion(Dependency, String, String, Confidence, Set)}</em>
 <a class="jxr_linenumber" name="L1075" href="#L1075">1075</a> <em class="jxr_javadoccomment">     * from not taking an exact-match versioned CPE into account because the ecosystem-related word does not appear in</em>
-<a class="jxr_linenumber" name="L1076" href="#L1076">1076</a> <em class="jxr_javadoccomment">     * the dependencyName. It helps prevent false-positive cases like https://github.com/jeremylong/DependencyCheck/issues/5545</em>
+<a class="jxr_linenumber" name="L1076" href="#L1076">1076</a> <em class="jxr_javadoccomment">     * the dependencyName. It helps prevent false-positive cases like https://github.com/dependency-check/DependencyCheck/issues/5545</em>
 <a class="jxr_linenumber" name="L1077" href="#L1077">1077</a> <em class="jxr_javadoccomment">     * @see #considerDependencyVersion(Dependency, String, String, Confidence, Set)</em>
 <a class="jxr_linenumber" name="L1078" href="#L1078">1078</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L1079" href="#L1079">1079</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> wordMatchesEcosystem(@Nullable String ecosystem, String word) {

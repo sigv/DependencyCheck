@@ -67,34 +67,35 @@ import org.owasp.dependencycheck.utils.Settings;
      */
     @Override
     protected void runCheck() throws MojoExecutionException, MojoFailureException {
-<span class="fc" id="L70">        try (Engine engine = initializeEngine()) {</span>
+<span class="fc" id="L70">        muteNoisyLoggers();</span>
+<span class="fc" id="L71">        try (Engine engine = initializeEngine()) {</span>
             try {
-<span class="pc bpc" id="L72" title="1 of 2 branches missed.">                if (!engine.getSettings().getBoolean(Settings.KEYS.AUTO_UPDATE)) {</span>
-<span class="nc" id="L73">                    engine.getSettings().setBoolean(Settings.KEYS.AUTO_UPDATE, true);</span>
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">                if (!engine.getSettings().getBoolean(Settings.KEYS.AUTO_UPDATE)) {</span>
+<span class="nc" id="L74">                    engine.getSettings().setBoolean(Settings.KEYS.AUTO_UPDATE, true);</span>
                 }
-<span class="nc" id="L75">            } catch (InvalidSettingException ex) {</span>
-<span class="nc" id="L76">                engine.getSettings().setBoolean(Settings.KEYS.AUTO_UPDATE, true);</span>
-<span class="fc" id="L77">            }</span>
-<span class="fc" id="L78">            engine.doUpdates();</span>
-<span class="nc" id="L79">        } catch (DatabaseException ex) {</span>
-<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (getLog().isDebugEnabled()) {</span>
-<span class="nc" id="L81">                getLog().debug(&quot;Database connection error&quot;, ex);</span>
+<span class="nc" id="L76">            } catch (InvalidSettingException ex) {</span>
+<span class="nc" id="L77">                engine.getSettings().setBoolean(Settings.KEYS.AUTO_UPDATE, true);</span>
+<span class="fc" id="L78">            }</span>
+<span class="fc" id="L79">            engine.doUpdates();</span>
+<span class="nc" id="L80">        } catch (DatabaseException ex) {</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">            if (getLog().isDebugEnabled()) {</span>
+<span class="nc" id="L82">                getLog().debug(&quot;Database connection error&quot;, ex);</span>
             }
-<span class="nc" id="L83">            final String msg = &quot;An exception occurred connecting to the local database. Please see the log file for more details.&quot;;</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (this.isFailOnError()) {</span>
-<span class="nc" id="L85">                throw new MojoExecutionException(msg, ex);</span>
+<span class="nc" id="L84">            final String msg = &quot;An exception occurred connecting to the local database. Please see the log file for more details.&quot;;</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (this.isFailOnError()) {</span>
+<span class="nc" id="L86">                throw new MojoExecutionException(msg, ex);</span>
             }
-<span class="nc" id="L87">            getLog().error(msg);</span>
-<span class="nc" id="L88">        } catch (UpdateException ex) {</span>
-<span class="nc" id="L89">            final String msg = &quot;An exception occurred while downloading updates. Please see the log file for more details.&quot;;</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (this.isFailOnError()) {</span>
-<span class="nc" id="L91">                throw new MojoExecutionException(msg, ex);</span>
+<span class="nc" id="L88">            getLog().error(msg);</span>
+<span class="nc" id="L89">        } catch (UpdateException ex) {</span>
+<span class="nc" id="L90">            final String msg = &quot;An exception occurred while downloading updates. Please see the log file for more details.&quot;;</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (this.isFailOnError()) {</span>
+<span class="nc" id="L92">                throw new MojoExecutionException(msg, ex);</span>
             }
-<span class="nc" id="L93">            getLog().error(msg);</span>
+<span class="nc" id="L94">            getLog().error(msg);</span>
         } finally {
-<span class="fc" id="L95">            getSettings().cleanup();</span>
+<span class="fc" id="L96">            getSettings().cleanup();</span>
         }
-<span class="fc" id="L97">    }</span>
+<span class="fc" id="L98">    }</span>
 
     /**
      * Returns the report name.
@@ -104,7 +105,7 @@ import org.owasp.dependencycheck.utils.Settings;
      */
     @Override
     public String getName(Locale locale) {
-<span class="nc" id="L107">        return &quot;dependency-check-update&quot;;</span>
+<span class="nc" id="L108">        return &quot;dependency-check-update&quot;;</span>
     }
 
     /**
@@ -116,7 +117,7 @@ import org.owasp.dependencycheck.utils.Settings;
      */
     @Override
     public String getDescription(Locale locale) {
-<span class="nc" id="L119">        return &quot;Updates the local cache of the NVD data from NIST.&quot;;</span>
+<span class="nc" id="L120">        return &quot;Updates the local cache of the NVD data from NIST.&quot;;</span>
     }
 
     /**
@@ -129,7 +130,7 @@ import org.owasp.dependencycheck.utils.Settings;
      */
     @Override
     protected ExceptionCollection scanDependencies(Engine engine) throws MojoExecutionException {
-<span class="nc" id="L132">        throw new UnsupportedOperationException(&quot;Operation not supported&quot;);</span>
+<span class="nc" id="L133">        throw new UnsupportedOperationException(&quot;Operation not supported&quot;);</span>
     }
 
     /**
@@ -143,7 +144,7 @@ import org.owasp.dependencycheck.utils.Settings;
      */
     @Override
     protected ExceptionCollection scanPlugins(final Engine engine, final ExceptionCollection exCollection) throws MojoExecutionException {
-<span class="nc" id="L146">        throw new UnsupportedOperationException(&quot;Operation not supported&quot;);</span>
+<span class="nc" id="L147">        throw new UnsupportedOperationException(&quot;Operation not supported&quot;);</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

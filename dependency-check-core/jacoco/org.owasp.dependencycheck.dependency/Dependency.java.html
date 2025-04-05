@@ -867,7 +867,7 @@ public class Dependency extends EvidenceCollection implements Serializable {
     public synchronized void addRelatedDependency(Dependency dependency) {
 <span class="pc bpc" id="L868" title="1 of 2 branches missed.">        if (this == dependency) {</span>
 <span class="nc" id="L869">            LOGGER.warn(&quot;Attempted to add a circular reference - please post the log file to issue #172 here &quot;</span>
-                    + &quot;https://github.com/jeremylong/DependencyCheck/issues/172&quot;);
+                    + &quot;https://github.com/dependency-check/DependencyCheck/issues/172&quot;);
 <span class="nc" id="L871">            LOGGER.debug(&quot;this: {}&quot;, this);</span>
 <span class="nc" id="L872">            LOGGER.debug(&quot;dependency: {}&quot;, dependency);</span>
 <span class="fc bfc" id="L873" title="All 2 branches covered.">        } else if (NAME_COMPARATOR.compare(this, dependency) == 0) {</span>
@@ -1058,4 +1058,4 @@ public class Dependency extends EvidenceCollection implements Serializable {
         String hash(File file) throws IOException, NoSuchAlgorithmException;
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1524,46 +1524,57 @@ public class Check extends Update {
 <span class="fc bfc" id="L1524" title="All 2 branches covered.">        for (Dependency d : dependencies) {</span>
 <span class="fc" id="L1525">            boolean addName = true;</span>
 <span class="fc bfc" id="L1526" title="All 2 branches covered.">            for (Vulnerability v : d.getVulnerabilities()) {</span>
-<span class="pc bpc" id="L1527" title="2 of 4 branches missed.">                if ((v.getCvssV2() != null &amp;&amp; v.getCvssV2().getCvssData().getBaseScore() &gt;= failBuildOnCVSS)</span>
-<span class="nc bnc" id="L1528" title="All 4 branches missed.">                        || (v.getCvssV3() != null &amp;&amp; v.getCvssV3().getCvssData().getBaseScore() &gt;= failBuildOnCVSS)</span>
-<span class="nc bnc" id="L1529" title="All 4 branches missed.">                        || (v.getCvssV4() != null &amp;&amp; v.getCvssV4().getCvssData().getBaseScore() &gt;= failBuildOnCVSS)</span>
-<span class="nc bnc" id="L1530" title="All 6 branches missed.">                        || (v.getUnscoredSeverity() != null &amp;&amp; SeverityUtil.estimateCvssV2(v.getUnscoredSeverity()) &gt;= failBuildOnCVSS)</span>
+<span class="pc bpc" id="L1527" title="2 of 4 branches missed.">                final double cvssV2 = v.getCvssV2() != null &amp;&amp; v.getCvssV2().getCvssData() != null</span>
+<span class="pc bpc" id="L1528" title="1 of 2 branches missed.">                        &amp;&amp; v.getCvssV2().getCvssData().getBaseScore() != null ? v.getCvssV2().getCvssData().getBaseScore() : -1;</span>
+<span class="pc bpc" id="L1529" title="1 of 4 branches missed.">                final double cvssV3 = v.getCvssV3() != null &amp;&amp; v.getCvssV3().getCvssData() != null</span>
+<span class="pc bpc" id="L1530" title="1 of 2 branches missed.">                        &amp;&amp; v.getCvssV3().getCvssData().getBaseScore() != null ? v.getCvssV3().getCvssData().getBaseScore() : -1;</span>
+<span class="pc bpc" id="L1531" title="3 of 4 branches missed.">                final double cvssV4 = v.getCvssV4() != null &amp;&amp; v.getCvssV4().getCvssData() != null</span>
+<span class="pc bnc" id="L1532" title="All 2 branches missed.">                        &amp;&amp; v.getCvssV4().getCvssData().getBaseScore() != null ? v.getCvssV4().getCvssData().getBaseScore() : -1;</span>
+<span class="pc bpc" id="L1533" title="5 of 6 branches missed.">                final boolean useUnscored = cvssV2 == -1 &amp;&amp; cvssV3 == -1 &amp;&amp; cvssV4 == -1;</span>
+                final double unscoredCvss =
+<span class="pc bpc" id="L1535" title="3 of 4 branches missed.">                        useUnscored &amp;&amp; v.getUnscoredSeverity() != null ? SeverityUtil.estimateCvssV2(v.getUnscoredSeverity()) : -1;</span>
+
+<span class="pc bpc" id="L1537" title="9 of 10 branches missed.">                if (cvssV2 &gt;= failBuildOnCVSS</span>
+                        || cvssV3 &gt;= failBuildOnCVSS
+                        || cvssV4 &gt;= failBuildOnCVSS
+                        || unscoredCvss &gt;= failBuildOnCVSS
                         //safety net to fail on any if for some reason the above misses on 0
-                        || (failBuildOnCVSS &lt;= 0.0f)) {
-<span class="fc bfc" id="L1533" title="All 2 branches covered.">                    if (addName) {</span>
-<span class="fc" id="L1534">                        addName = false;</span>
-<span class="fc" id="L1535">                        ids.append(NEW_LINE).append(d.getFileName()).append(&quot; (&quot;)</span>
-<span class="fc" id="L1536">                           .append(Stream.concat(d.getSoftwareIdentifiers().stream(), d.getVulnerableSoftwareIdentifiers().stream())</span>
-<span class="fc" id="L1537">                                         .map(Identifier::getValue)</span>
-<span class="fc" id="L1538">                                         .collect(Collectors.joining(&quot;, &quot;)))</span>
-<span class="fc" id="L1539">                           .append(&quot;): &quot;)</span>
-<span class="fc" id="L1540">                           .append(v.getName());</span>
+                        || failBuildOnCVSS &lt;= 0.0f
+                ) {
+<span class="fc bfc" id="L1544" title="All 2 branches covered.">                    if (addName) {</span>
+<span class="fc" id="L1545">                        addName = false;</span>
+<span class="fc" id="L1546">                        ids.append(NEW_LINE).append(d.getFileName()).append(&quot; (&quot;)</span>
+<span class="fc" id="L1547">                           .append(Stream.concat(d.getSoftwareIdentifiers().stream(), d.getVulnerableSoftwareIdentifiers().stream())</span>
+<span class="fc" id="L1548">                                         .map(Identifier::getValue)</span>
+<span class="fc" id="L1549">                                         .collect(Collectors.joining(&quot;, &quot;)))</span>
+<span class="fc" id="L1550">                           .append(&quot;): &quot;)</span>
+<span class="fc" id="L1551">                           .append(v.getName());</span>
                     } else {
-<span class="fc" id="L1542">                        ids.append(&quot;, &quot;).append(v.getName());</span>
+<span class="fc" id="L1553">                        ids.append(&quot;, &quot;).append(v.getName());</span>
                     }
                 }
-<span class="fc" id="L1545">            }</span>
+<span class="fc" id="L1556">            }</span>
         }
-<span class="fc bfc" id="L1547" title="All 2 branches covered.">        if (ids.length() &gt; 0) {</span>
+<span class="fc bfc" id="L1558" title="All 2 branches covered.">        if (ids.length() &gt; 0) {</span>
             final String msg;
-<span class="pc bpc" id="L1549" title="1 of 2 branches missed.">            if (showSummary) {</span>
-<span class="fc" id="L1550">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
+<span class="pc bpc" id="L1560" title="1 of 2 branches missed.">            if (showSummary) {</span>
+<span class="fc" id="L1561">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
                         + &quot;One or more dependencies were identified with vulnerabilities that have a CVSS score greater than or equal to '%.1f': %s%n&quot;
-<span class="fc" id="L1552">                        + &quot;See the dependency-check report for more details.%n%n&quot;, failBuildOnCVSS, ids);</span>
+<span class="fc" id="L1563">                        + &quot;See the dependency-check report for more details.%n%n&quot;, failBuildOnCVSS, ids);</span>
             } else {
-<span class="nc" id="L1554">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
+<span class="nc" id="L1565">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
                         + &quot;One or more dependencies were identified with vulnerabilities.%n%n&quot;
                         + &quot;See the dependency-check report for more details.%n%n&quot;);
             }
-<span class="fc" id="L1558">            throw new BuildException(msg);</span>
+<span class="fc" id="L1569">            throw new BuildException(msg);</span>
         }
-<span class="fc" id="L1560">    }</span>
+<span class="fc" id="L1571">    }</span>
 
     /**
      * An enumeration of supported report formats: &quot;ALL&quot;, &quot;HTML&quot;, &quot;XML&quot;, &quot;CSV&quot;,
      * &quot;JSON&quot;, &quot;JUNIT&quot;, &quot;SARIF&quot;, 'JENkINS', etc..
      */
-<span class="fc" id="L1566">    public static class ReportFormats extends EnumeratedAttribute {</span>
+<span class="fc" id="L1577">    public static class ReportFormats extends EnumeratedAttribute {</span>
 
         /**
          * Returns the list of values for the report format.
@@ -1572,13 +1583,13 @@ public class Check extends Update {
          */
         @Override
         public String[] getValues() {
-<span class="fc" id="L1575">            int i = 0;</span>
-<span class="fc" id="L1576">            final Format[] formats = Format.values();</span>
-<span class="fc" id="L1577">            final String[] values = new String[formats.length];</span>
-<span class="fc bfc" id="L1578" title="All 2 branches covered.">            for (Format format : formats) {</span>
-<span class="fc" id="L1579">                values[i++] = format.name();</span>
+<span class="fc" id="L1586">            int i = 0;</span>
+<span class="fc" id="L1587">            final Format[] formats = Format.values();</span>
+<span class="fc" id="L1588">            final String[] values = new String[formats.length];</span>
+<span class="fc bfc" id="L1589" title="All 2 branches covered.">            for (Format format : formats) {</span>
+<span class="fc" id="L1590">                values[i++] = format.name();</span>
             }
-<span class="fc" id="L1581">            return values;</span>
+<span class="fc" id="L1592">            return values;</span>
         }
     }
 
@@ -1587,7 +1598,7 @@ public class Check extends Update {
      * {@code &lt;reportFormat format=&quot;&lt;format&gt;&quot;/&gt;} nested element to define
      * multiple report formats for the ant-task.
      */
-<span class="fc" id="L1590">    public static class ReportFormat {</span>
+<span class="fc" id="L1601">    public static class ReportFormat {</span>
 
         /**
          * The format of this ReportFormat.
@@ -1600,7 +1611,7 @@ public class Check extends Update {
          * @return the String representing a report format
          */
         public String getFormat() {
-<span class="fc" id="L1603">            return this.format.getValue();</span>
+<span class="fc" id="L1614">            return this.format.getValue();</span>
         }
 
         /**
@@ -1611,9 +1622,9 @@ public class Check extends Update {
          * valid values of the {@link ReportFormats} EnumeratedAttribute
          */
         public void setFormat(final String format) {
-<span class="fc" id="L1614">            this.format = (ReportFormats) EnumeratedAttribute.getInstance(ReportFormats.class, format);</span>
-<span class="fc" id="L1615">        }</span>
+<span class="fc" id="L1625">            this.format = (ReportFormats) EnumeratedAttribute.getInstance(ReportFormats.class, format);</span>
+<span class="fc" id="L1626">        }</span>
     }
 }
 //CSON: MethodCount
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

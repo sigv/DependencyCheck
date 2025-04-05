@@ -87,7 +87,7 @@ public class AnalysisTask implements Callable&lt;Void&gt; {
             try {
 <span class="fc" id="L88">                analyzer.analyze(dependency, engine);</span>
 <span class="fc" id="L89">            } catch (AnalysisException ex) {</span>
-<span class="fc" id="L90">                LOGGER.warn(&quot;An error occurred while analyzing '{}' ({}).&quot;, dependency.getActualFilePath(), analyzer.getName());</span>
+<span class="fc" id="L90">                LOGGER.warn(&quot;An error occurred while analyzing '{}' ({}): {}&quot;, dependency.getActualFilePath(), analyzer.getName(), ex.getMessage());</span>
 <span class="fc" id="L91">                LOGGER.debug(&quot;&quot;, ex);</span>
 <span class="fc" id="L92">                exceptions.add(ex);</span>
 <span class="fc" id="L93">            } catch (Throwable ex) {</span>
@@ -113,4 +113,4 @@ public class AnalysisTask implements Callable&lt;Void&gt; {
 <span class="fc" id="L113">        return true;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

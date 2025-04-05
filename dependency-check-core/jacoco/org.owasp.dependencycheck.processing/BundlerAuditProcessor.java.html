@@ -242,7 +242,7 @@ public class BundlerAuditProcessor extends Processor&lt;InputStream&gt; {
 <span class="nc" id="L242">                    score = 2.0;</span>
                 }
 <span class="nc" id="L244">                LOGGER.debug(&quot;bundle-audit vulnerability missing CVSS data: {}&quot;, vulnerability.getName());</span>
-<span class="nc" id="L245">                final CvssV2Data cvssData = new CvssV2Data(&quot;2.0&quot;, null, null, null, null, null, null, null, score, criticality.toUpperCase(),</span>
+<span class="nc" id="L245">                final CvssV2Data cvssData = new CvssV2Data(CvssV2Data.Version._2_0, null, null, null, null, null, null, null, score, criticality.toUpperCase(),</span>
                         null, null, null, null, null, null, null, null, null, null);
 <span class="nc" id="L247">                final CvssV2 cvssV2 = new CvssV2(null, null, cvssData, criticality.toUpperCase(), null, null, null, null, null, null, null);</span>
 <span class="nc" id="L248">                vulnerability.setCvssV2(cvssV2);</span>
@@ -331,4 +331,4 @@ public class BundlerAuditProcessor extends Processor&lt;InputStream&gt; {
 <span class="nc" id="L331">        return dependency;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

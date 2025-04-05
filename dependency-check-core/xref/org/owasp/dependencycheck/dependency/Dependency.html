@@ -875,7 +875,7 @@
 <a class="jxr_linenumber" name="L867" href="#L867">867</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">synchronized</strong> <strong class="jxr_keyword">void</strong> addRelatedDependency(<a href="../../../../org/owasp/dependencycheck/dependency/Dependency.html">Dependency</a> dependency) {
 <a class="jxr_linenumber" name="L868" href="#L868">868</a>         <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong> == dependency) {
 <a class="jxr_linenumber" name="L869" href="#L869">869</a>             LOGGER.warn(<span class="jxr_string">"Attempted to add a circular reference - please post the log file to issue #172 here "</span>
-<a class="jxr_linenumber" name="L870" href="#L870">870</a>                     + <span class="jxr_string">"https://github.com/jeremylong/DependencyCheck/issues/172"</span>);
+<a class="jxr_linenumber" name="L870" href="#L870">870</a>                     + <span class="jxr_string">"https://github.com/dependency-check/DependencyCheck/issues/172"</span>);
 <a class="jxr_linenumber" name="L871" href="#L871">871</a>             LOGGER.debug(<span class="jxr_string">"this: {}"</span>, <strong class="jxr_keyword">this</strong>);
 <a class="jxr_linenumber" name="L872" href="#L872">872</a>             LOGGER.debug(<span class="jxr_string">"dependency: {}"</span>, dependency);
 <a class="jxr_linenumber" name="L873" href="#L873">873</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (NAME_COMPARATOR.compare(<strong class="jxr_keyword">this</strong>, dependency) == 0) {

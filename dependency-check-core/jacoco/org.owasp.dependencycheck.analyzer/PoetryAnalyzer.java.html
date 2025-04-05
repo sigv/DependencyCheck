@@ -12,8 +12,6 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * Copyright (c) 2019 Nima Yahyazadeh. All Rights Reserved.
  */
 package org.owasp.dependencycheck.analyzer;
 
@@ -36,6 +34,8 @@ import org.owasp.dependencycheck.utils.Settings;
 
 import com.moandjiezana.toml.Toml;
 import java.io.File;
+import java.util.Optional;
+
 import org.owasp.dependencycheck.data.nvd.ecosystem.Ecosystem;
 import org.owasp.dependencycheck.dependency.naming.GenericIdentifier;
 import org.owasp.dependencycheck.dependency.naming.PurlIdentifier;
@@ -147,68 +147,97 @@ import org.slf4j.LoggerFactory;
         //do not report on the build file itself
 <span class="fc" id="L148">        engine.removeDependency(dependency);</span>
 
-<span class="fc" id="L150">        final Toml result = new Toml().read(dependency.getActualFile());</span>
-<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (PYPROJECT_TOML.equals(dependency.getActualFile().getName())) {</span>
-<span class="fc bfc" id="L152" title="All 2 branches covered.">            if (result.getTable(&quot;tool.poetry&quot;) == null) {</span>
-<span class="fc" id="L153">                LOGGER.debug(&quot;skipping {} as it does not contain `tool.poetry`&quot;, dependency.getDisplayFileName());</span>
-<span class="fc" id="L154">                return;</span>
+<span class="fc" id="L150">        final Optional&lt;Toml&gt; potentiallyParsedToml = parseDependencyFile(dependency);</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">        if (potentiallyParsedToml.isEmpty()) {</span>
+<span class="fc" id="L152">            LOGGER.warn(&quot;toml file skipped: {} could not be parsed&quot;, dependency.getActualFilePath());</span>
+<span class="fc" id="L153">            return;</span>
+        }
+<span class="fc" id="L155">        final Toml result = potentiallyParsedToml.get();</span>
+<span class="fc bfc" id="L156" title="All 2 branches covered.">        if (PYPROJECT_TOML.equals(dependency.getActualFile().getName())) {</span>
+<span class="fc bfc" id="L157" title="All 2 branches covered.">            if (result.getTable(&quot;tool.poetry&quot;) == null) {</span>
+<span class="fc" id="L158">                LOGGER.debug(&quot;skipping {} as it does not contain `tool.poetry`&quot;, dependency.getDisplayFileName());</span>
+<span class="fc" id="L159">                return;</span>
             }
 
-<span class="fc" id="L157">            final File parentPath = dependency.getActualFile().getParentFile();</span>
-<span class="nc" id="L158">            ensureLock(parentPath);</span>
+<span class="fc" id="L162">            final File parentPath = dependency.getActualFile().getParentFile();</span>
+<span class="nc" id="L163">            ensureLock(parentPath);</span>
             //exit as we can't analyze pyproject.toml - insufficient version information
-<span class="nc" id="L160">            return;</span>
-        }
-
-<span class="fc" id="L163">        final List&lt;Toml&gt; projectsLocks = result.getTables(&quot;package&quot;);</span>
-<span class="pc bpc" id="L164" title="1 of 2 branches missed.">        if (projectsLocks == null) {</span>
 <span class="nc" id="L165">            return;</span>
         }
-<span class="fc" id="L167">        projectsLocks.forEach((project) -&gt; {</span>
-<span class="fc" id="L168">            final String name = project.getString(&quot;name&quot;);</span>
-<span class="fc" id="L169">            final String version = project.getString(&quot;version&quot;);</span>
 
-<span class="fc" id="L171">            LOGGER.debug(String.format(&quot;package, version: %s %s&quot;, name, version));</span>
+<span class="fc" id="L168">        final List&lt;Toml&gt; projectsLocks = result.getTables(&quot;package&quot;);</span>
+<span class="pc bpc" id="L169" title="1 of 2 branches missed.">        if (projectsLocks == null) {</span>
+<span class="nc" id="L170">            return;</span>
+        }
+<span class="fc" id="L172">        projectsLocks.forEach((project) -&gt; {</span>
+<span class="fc" id="L173">            final String name = project.getString(&quot;name&quot;);</span>
+<span class="fc" id="L174">            final String version = project.getString(&quot;version&quot;);</span>
 
-<span class="fc" id="L173">            final Dependency d = new Dependency(dependency.getActualFile(), true);</span>
-<span class="fc" id="L174">            d.setName(name);</span>
-<span class="fc" id="L175">            d.setVersion(version);</span>
+<span class="fc" id="L176">            LOGGER.debug(String.format(&quot;package, version: %s %s&quot;, name, version));</span>
+
+<span class="fc" id="L178">            final Dependency d = new Dependency(dependency.getActualFile(), true);</span>
+<span class="fc" id="L179">            d.setName(name);</span>
+<span class="fc" id="L180">            d.setVersion(version);</span>
 
             try {
-<span class="fc" id="L178">                final PackageURL purl = PackageURLBuilder.aPackageURL()</span>
-<span class="fc" id="L179">                        .withType(&quot;pypi&quot;)</span>
-<span class="fc" id="L180">                        .withName(name)</span>
-<span class="fc" id="L181">                        .withVersion(version)</span>
-<span class="fc" id="L182">                        .build();</span>
-<span class="fc" id="L183">                d.addSoftwareIdentifier(new PurlIdentifier(purl, Confidence.HIGHEST));</span>
-<span class="nc" id="L184">            } catch (MalformedPackageURLException ex) {</span>
-<span class="nc" id="L185">                LOGGER.debug(&quot;Unable to build package url for pypi&quot;, ex);</span>
-<span class="nc" id="L186">                d.addSoftwareIdentifier(new GenericIdentifier(&quot;pypi:&quot; + name + &quot;@&quot; + version, Confidence.HIGH));</span>
-<span class="fc" id="L187">            }</span>
+<span class="fc" id="L183">                final PackageURL purl = PackageURLBuilder.aPackageURL()</span>
+<span class="fc" id="L184">                        .withType(&quot;pypi&quot;)</span>
+<span class="fc" id="L185">                        .withName(name)</span>
+<span class="fc" id="L186">                        .withVersion(version)</span>
+<span class="fc" id="L187">                        .build();</span>
+<span class="fc" id="L188">                d.addSoftwareIdentifier(new PurlIdentifier(purl, Confidence.HIGHEST));</span>
+<span class="nc" id="L189">            } catch (MalformedPackageURLException ex) {</span>
+<span class="nc" id="L190">                LOGGER.debug(&quot;Unable to build package url for pypi&quot;, ex);</span>
+<span class="nc" id="L191">                d.addSoftwareIdentifier(new GenericIdentifier(&quot;pypi:&quot; + name + &quot;@&quot; + version, Confidence.HIGH));</span>
+<span class="fc" id="L192">            }</span>
 
-<span class="fc" id="L189">            d.setPackagePath(String.format(&quot;%s:%s&quot;, name, version));</span>
-<span class="fc" id="L190">            d.setEcosystem(PythonDistributionAnalyzer.DEPENDENCY_ECOSYSTEM);</span>
-<span class="fc" id="L191">            final String filePath = String.format(&quot;%s:%s/%s&quot;, dependency.getFilePath(), name, version);</span>
-<span class="fc" id="L192">            d.setFilePath(filePath);</span>
-<span class="fc" id="L193">            d.setSha1sum(Checksum.getSHA1Checksum(filePath));</span>
-<span class="fc" id="L194">            d.setSha256sum(Checksum.getSHA256Checksum(filePath));</span>
-<span class="fc" id="L195">            d.setMd5sum(Checksum.getMD5Checksum(filePath));</span>
-<span class="fc" id="L196">            d.addEvidence(EvidenceType.PRODUCT, POETRY_LOCK, &quot;product&quot;, name, Confidence.HIGHEST);</span>
-<span class="fc" id="L197">            d.addEvidence(EvidenceType.VERSION, POETRY_LOCK, &quot;version&quot;, version, Confidence.HIGHEST);</span>
-<span class="fc" id="L198">            d.addEvidence(EvidenceType.VENDOR, POETRY_LOCK, &quot;vendor&quot;, name, Confidence.HIGHEST);</span>
-<span class="fc" id="L199">            engine.addDependency(d);</span>
-<span class="fc" id="L200">        });</span>
-<span class="fc" id="L201">    }</span>
+<span class="fc" id="L194">            d.setPackagePath(String.format(&quot;%s:%s&quot;, name, version));</span>
+<span class="fc" id="L195">            d.setEcosystem(PythonDistributionAnalyzer.DEPENDENCY_ECOSYSTEM);</span>
+<span class="fc" id="L196">            final String filePath = String.format(&quot;%s:%s/%s&quot;, dependency.getFilePath(), name, version);</span>
+<span class="fc" id="L197">            d.setFilePath(filePath);</span>
+<span class="fc" id="L198">            d.setSha1sum(Checksum.getSHA1Checksum(filePath));</span>
+<span class="fc" id="L199">            d.setSha256sum(Checksum.getSHA256Checksum(filePath));</span>
+<span class="fc" id="L200">            d.setMd5sum(Checksum.getMD5Checksum(filePath));</span>
+<span class="fc" id="L201">            d.addEvidence(EvidenceType.PRODUCT, POETRY_LOCK, &quot;product&quot;, name, Confidence.HIGHEST);</span>
+<span class="fc" id="L202">            d.addEvidence(EvidenceType.VERSION, POETRY_LOCK, &quot;version&quot;, version, Confidence.HIGHEST);</span>
+<span class="fc" id="L203">            d.addEvidence(EvidenceType.VENDOR, POETRY_LOCK, &quot;vendor&quot;, name, Confidence.HIGHEST);</span>
+<span class="fc" id="L204">            engine.addDependency(d);</span>
+<span class="fc" id="L205">        });</span>
+<span class="fc" id="L206">    }</span>
+
+    private Optional&lt;Toml&gt; parseDependencyFile(Dependency dependency) {
+        try {
+<span class="fc" id="L210">            final Toml toml = new Toml().read(dependency.getActualFile());</span>
+<span class="fc" id="L211">            return Optional.of(toml);</span>
+<span class="fc" id="L212">        } catch (RuntimeException e) {</span>
+<span class="fc" id="L213">            final Optional&lt;String&gt; unparsableFileErrorMessage = Optional.ofNullable(e.getCause())</span>
+<span class="fc" id="L214">                    .filter(c -&gt; c instanceof IllegalStateException)</span>
+<span class="fc" id="L215">                    .map(Throwable::getMessage)</span>
+<span class="fc" id="L216">                    .filter(PoetryAnalyzer::isInvalidKeyErrorMessage);</span>
+
+<span class="pc bpc" id="L218" title="1 of 2 branches missed.">            if (unparsableFileErrorMessage.isPresent()) {</span>
+<span class="fc" id="L219">                final String message = String.format(&quot;Invalid toml file, cannot parse '%s'&quot;, dependency.getActualFile());</span>
+<span class="fc" id="L220">                LOGGER.debug(message, e);</span>
+<span class="fc" id="L221">                return Optional.empty();</span>
+            }
+
+<span class="nc" id="L224">            throw e;</span>
+        }
+    }
+
+    private static boolean isInvalidKeyErrorMessage(String m) {
+<span class="fc" id="L229">        return m.startsWith(&quot;Invalid key&quot;);</span>
+    }
 
     private void ensureLock(File parent) throws AnalysisException {
-<span class="fc" id="L204">        final File lock = new File(parent, POETRY_LOCK);</span>
-<span class="fc" id="L205">        final File requirements = new File(parent, &quot;requirements.txt&quot;);</span>
-<span class="pc bpc" id="L206" title="2 of 4 branches missed.">        final boolean found = lock.isFile() || requirements.isFile();</span>
+<span class="fc" id="L233">        final File lock = new File(parent, POETRY_LOCK);</span>
+<span class="fc" id="L234">        final File requirements = new File(parent, &quot;requirements.txt&quot;);</span>
+<span class="pc bpc" id="L235" title="2 of 4 branches missed.">        final boolean found = lock.isFile() || requirements.isFile();</span>
         //do not throw an error if the pyproject.toml is in the node_modules (#5464).
-<span class="pc bpc" id="L208" title="2 of 4 branches missed.">        if (!found &amp;&amp; !parent.toString().contains(&quot;node_modules&quot;)) {</span>
-<span class="fc" id="L209">            throw new AnalysisException(&quot;Python `pyproject.toml` found and there &quot;</span>
+<span class="pc bpc" id="L237" title="2 of 4 branches missed.">        if (!found &amp;&amp; !parent.toString().contains(&quot;node_modules&quot;)) {</span>
+<span class="fc" id="L238">            throw new AnalysisException(&quot;Python `pyproject.toml` found and there &quot;</span>
                     + &quot;is not a `poetry.lock` or `requirements.txt` - analysis will be incomplete&quot;);
         }
-<span class="nc" id="L212">    }</span>
+<span class="nc" id="L241">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

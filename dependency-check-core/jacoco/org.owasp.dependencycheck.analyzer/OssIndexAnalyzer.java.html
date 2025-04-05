@@ -359,7 +359,7 @@ import org.sonatype.ossindex.service.client.transport.Transport.TransportExcepti
 <span class="nc" id="L359">                        availabilityImpact = CvssV2Data.CiaType.fromValue(tmp);</span>
                     }
 <span class="nc" id="L361">                    final String severity = Cvss2Severity.of((float) cvssScore).name().toUpperCase();</span>
-<span class="nc" id="L362">                    final CvssV2Data cvssData = new CvssV2Data(&quot;2.0&quot;, source.getCvssVector(), accessVector,</span>
+<span class="nc" id="L362">                    final CvssV2Data cvssData = new CvssV2Data(CvssV2Data.Version._2_0, source.getCvssVector(), accessVector,</span>
                             accessComplexity, authentication, confidentialityImpact,
 <span class="nc" id="L364">                            integrityImpact, availabilityImpact, cvssScore,</span>
                             severity, null, null, null, null, null, null, null, null, null, null);
@@ -401,4 +401,4 @@ import org.sonatype.ossindex.service.client.transport.Transport.TransportExcepti
 <span class="nc" id="L401">        return result;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

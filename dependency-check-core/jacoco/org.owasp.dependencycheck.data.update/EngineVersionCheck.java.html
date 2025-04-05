@@ -217,7 +217,7 @@ public class EngineVersionCheck implements CachedWebDataSource {
      */
     protected String getCurrentReleaseVersion() {
         try {
-<span class="fc" id="L220">            final String str = settings.getString(Settings.KEYS.ENGINE_VERSION_CHECK_URL, &quot;https://jeremylong.github.io/DependencyCheck/current.txt&quot;);</span>
+<span class="fc" id="L220">            final String str = settings.getString(Settings.KEYS.ENGINE_VERSION_CHECK_URL, &quot;https://dependency-check.github.io/DependencyCheck/current.txt&quot;);</span>
 <span class="fc" id="L221">            final URL url = new URL(str);</span>
 <span class="fc" id="L222">            String releaseVersion = null;</span>
 <span class="fc" id="L223">            releaseVersion = Downloader.getInstance().fetchContent(url, StandardCharsets.UTF_8);</span>
@@ -239,4 +239,4 @@ public class EngineVersionCheck implements CachedWebDataSource {
 <span class="nc" id="L239">        return true;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

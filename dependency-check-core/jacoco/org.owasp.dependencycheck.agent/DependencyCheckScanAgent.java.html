@@ -1027,40 +1027,49 @@ import org.slf4j.LoggerFactory;
 <span class="nc bnc" id="L1027" title="All 2 branches missed.">        for (Dependency d : dependencies) {</span>
 <span class="nc" id="L1028">            boolean addName = true;</span>
 <span class="nc bnc" id="L1029" title="All 2 branches missed.">            for (Vulnerability v : d.getVulnerabilities()) {</span>
-<span class="nc bnc" id="L1030" title="All 4 branches missed.">                if ((v.getCvssV2() != null &amp;&amp; v.getCvssV2().getCvssData().getBaseScore() &gt;= failBuildOnCVSS)</span>
-<span class="nc bnc" id="L1031" title="All 4 branches missed.">                        || (v.getCvssV3() != null &amp;&amp; v.getCvssV3().getCvssData().getBaseScore() &gt;= failBuildOnCVSS)</span>
-<span class="nc bnc" id="L1032" title="All 4 branches missed.">                        || (v.getCvssV4() != null &amp;&amp; v.getCvssV4().getCvssData().getBaseScore() &gt;= failBuildOnCVSS)</span>
-<span class="nc bnc" id="L1033" title="All 4 branches missed.">                        || (v.getUnscoredSeverity() != null &amp;&amp; SeverityUtil.estimateCvssV2(v.getUnscoredSeverity()) &gt;= failBuildOnCVSS)</span>
+<span class="nc bnc" id="L1030" title="All 4 branches missed.">                final double cvssV2 = v.getCvssV2() != null &amp;&amp; v.getCvssV2().getCvssData() != null</span>
+<span class="nc bnc" id="L1031" title="All 2 branches missed.">                        &amp;&amp; v.getCvssV2().getCvssData().getBaseScore() != null ? v.getCvssV2().getCvssData().getBaseScore() : -1;</span>
+<span class="nc bnc" id="L1032" title="All 4 branches missed.">                final double cvssV3 = v.getCvssV3() != null &amp;&amp; v.getCvssV3().getCvssData() != null</span>
+<span class="nc bnc" id="L1033" title="All 2 branches missed.">                        &amp;&amp; v.getCvssV3().getCvssData().getBaseScore() != null ? v.getCvssV3().getCvssData().getBaseScore() : -1;</span>
+<span class="nc bnc" id="L1034" title="All 4 branches missed.">                final double cvssV4 = v.getCvssV4() != null &amp;&amp; v.getCvssV4().getCvssData() != null</span>
+<span class="nc bnc" id="L1035" title="All 2 branches missed.">                        &amp;&amp; v.getCvssV4().getCvssData().getBaseScore() != null ? v.getCvssV4().getCvssData().getBaseScore() : -1;</span>
+<span class="nc bnc" id="L1036" title="All 6 branches missed.">                final boolean useUnscored = cvssV2 == -1 &amp;&amp; cvssV3 == -1 &amp;&amp; cvssV4 == -1;</span>
+<span class="nc bnc" id="L1037" title="All 4 branches missed.">                final double unscoredCvss = (useUnscored &amp;&amp; v.getUnscoredSeverity() != null) ? SeverityUtil.estimateCvssV2(v.getUnscoredSeverity()) : -1;</span>
+<span class="nc bnc" id="L1038" title="All 2 branches missed.">                if (cvssV2 &gt;= failBuildOnCVSS</span>
+<span class="nc bnc" id="L1039" title="All 2 branches missed.">                        || cvssV3 &gt;= failBuildOnCVSS</span>
+<span class="nc bnc" id="L1040" title="All 2 branches missed.">                        || cvssV4 &gt;= failBuildOnCVSS</span>
+<span class="nc bnc" id="L1041" title="All 2 branches missed.">                        || unscoredCvss &gt;= failBuildOnCVSS</span>
                         //safety net to fail on any if for some reason the above misses on 0
-<span class="nc bnc" id="L1035" title="All 2 branches missed.">                        || (failBuildOnCVSS &lt;= 0.0f)) {</span>
-<span class="nc bnc" id="L1036" title="All 2 branches missed.">                    if (addName) {</span>
-<span class="nc" id="L1037">                        addName = false;</span>
-<span class="nc" id="L1038">                        ids.append(NEW_LINE).append(d.getFileName()).append(&quot; (&quot;)</span>
-<span class="nc" id="L1039">                           .append(Stream.concat(d.getSoftwareIdentifiers().stream(), d.getVulnerableSoftwareIdentifiers().stream())</span>
-<span class="nc" id="L1040">                                         .map(Identifier::getValue)</span>
-<span class="nc" id="L1041">                                         .collect(Collectors.joining(&quot;, &quot;)))</span>
-<span class="nc" id="L1042">                           .append(&quot;): &quot;)</span>
-<span class="nc" id="L1043">                           .append(v.getName());</span>
+<span class="nc bnc" id="L1043" title="All 2 branches missed.">                        || failBuildOnCVSS &lt;= 0.0f</span>
+                ) {
+<span class="nc bnc" id="L1045" title="All 2 branches missed.">                    if (addName) {</span>
+<span class="nc" id="L1046">                        addName = false;</span>
+<span class="nc" id="L1047">                        ids.append(NEW_LINE).append(d.getFileName()).append(&quot; (&quot;)</span>
+<span class="nc" id="L1048">                           .append(Stream.concat(d.getSoftwareIdentifiers().stream(), d.getVulnerableSoftwareIdentifiers().stream())</span>
+<span class="nc" id="L1049">                                         .map(Identifier::getValue)</span>
+<span class="nc" id="L1050">                                         .collect(Collectors.joining(&quot;, &quot;)))</span>
+<span class="nc" id="L1051">                           .append(&quot;): &quot;)</span>
+<span class="nc" id="L1052">                           .append(v.getName());</span>
                     } else {
-<span class="nc" id="L1045">                        ids.append(&quot;, &quot;).append(v.getName());</span>
+<span class="nc" id="L1054">                        ids.append(&quot;, &quot;).append(v.getName());</span>
                     }
                 }
-<span class="nc" id="L1048">            }</span>
+<span class="nc" id="L1057">            }</span>
         }
-<span class="nc bnc" id="L1050" title="All 2 branches missed.">        if (ids.length() &gt; 0) {</span>
+<span class="nc bnc" id="L1059" title="All 2 branches missed.">        if (ids.length() &gt; 0) {</span>
             final String msg;
-<span class="nc bnc" id="L1052" title="All 2 branches missed.">            if (showSummary) {</span>
-<span class="nc" id="L1053">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
+<span class="nc bnc" id="L1061" title="All 2 branches missed.">            if (showSummary) {</span>
+<span class="nc" id="L1062">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
                         + &quot;One or more dependencies were identified with vulnerabilities that have a CVSS score greater than or equal to '%.1f': %s%n&quot;
                         + &quot;See the dependency-check report for more details.%n%n&quot;, failBuildOnCVSS, ids);
             } else {
-<span class="nc" id="L1057">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
+<span class="nc" id="L1066">                msg = String.format(&quot;%n%nDependency-Check Failure:%n&quot;</span>
                         + &quot;One or more dependencies were identified with vulnerabilities.%n%n&quot;
                         + &quot;See the dependency-check report for more details.%n%n&quot;);
             }
-<span class="nc" id="L1061">            throw new ScanAgentException(msg);</span>
+<span class="nc" id="L1070">            throw new ScanAgentException(msg);</span>
         }
-<span class="nc" id="L1063">    }</span>
+<span class="nc" id="L1072">    }</span>
 
     /**
      * Generates a warning message listing a summary of dependencies and their
@@ -1069,8 +1078,8 @@ import org.slf4j.LoggerFactory;
      * @param dependencies a list of dependency objects
      */
     public static void showSummary(Dependency[] dependencies) {
-<span class="fc" id="L1072">        showSummary(null, dependencies);</span>
-<span class="fc" id="L1073">    }</span>
+<span class="fc" id="L1081">        showSummary(null, dependencies);</span>
+<span class="fc" id="L1082">    }</span>
 
     /**
      * Generates a warning message listing a summary of dependencies and their
@@ -1080,31 +1089,31 @@ import org.slf4j.LoggerFactory;
      * @param dependencies a list of dependency objects
      */
     public static void showSummary(String projectName, Dependency[] dependencies) {
-<span class="fc" id="L1083">        final StringBuilder summary = new StringBuilder();</span>
-<span class="fc bfc" id="L1084" title="All 2 branches covered.">        for (Dependency d : dependencies) {</span>
-<span class="fc" id="L1085">            final String ids = d.getVulnerabilities(true).stream()</span>
-<span class="fc" id="L1086">                    .map(Vulnerability::getName)</span>
-<span class="fc" id="L1087">                    .collect(Collectors.joining(&quot;, &quot;));</span>
-<span class="pc bpc" id="L1088" title="1 of 2 branches missed.">            if (ids.length() &gt; 0) {</span>
-<span class="fc" id="L1089">                summary.append(d.getFileName()).append(&quot; (&quot;);</span>
-<span class="fc" id="L1090">                summary.append(Stream.concat(d.getSoftwareIdentifiers().stream(), d.getVulnerableSoftwareIdentifiers().stream())</span>
-<span class="fc" id="L1091">                        .map(Identifier::getValue)</span>
-<span class="fc" id="L1092">                        .collect(Collectors.joining(&quot;, &quot;)));</span>
-<span class="fc" id="L1093">                summary.append(&quot;) : &quot;).append(ids).append(NEW_LINE);</span>
+<span class="fc" id="L1092">        final StringBuilder summary = new StringBuilder();</span>
+<span class="fc bfc" id="L1093" title="All 2 branches covered.">        for (Dependency d : dependencies) {</span>
+<span class="fc" id="L1094">            final String ids = d.getVulnerabilities(true).stream()</span>
+<span class="fc" id="L1095">                    .map(Vulnerability::getName)</span>
+<span class="fc" id="L1096">                    .collect(Collectors.joining(&quot;, &quot;));</span>
+<span class="pc bpc" id="L1097" title="1 of 2 branches missed.">            if (ids.length() &gt; 0) {</span>
+<span class="fc" id="L1098">                summary.append(d.getFileName()).append(&quot; (&quot;);</span>
+<span class="fc" id="L1099">                summary.append(Stream.concat(d.getSoftwareIdentifiers().stream(), d.getVulnerableSoftwareIdentifiers().stream())</span>
+<span class="fc" id="L1100">                        .map(Identifier::getValue)</span>
+<span class="fc" id="L1101">                        .collect(Collectors.joining(&quot;, &quot;)));</span>
+<span class="fc" id="L1102">                summary.append(&quot;) : &quot;).append(ids).append(NEW_LINE);</span>
             }
         }
-<span class="pc bpc" id="L1096" title="1 of 2 branches missed.">        if (summary.length() &gt; 0) {</span>
-<span class="pc bpc" id="L1097" title="3 of 4 branches missed.">            if (projectName == null || projectName.isEmpty()) {</span>
-<span class="fc" id="L1098">                LOGGER.warn(&quot;\n\nOne or more dependencies were identified with known vulnerabilities:\n\n{}\n\n&quot;</span>
+<span class="pc bpc" id="L1105" title="1 of 2 branches missed.">        if (summary.length() &gt; 0) {</span>
+<span class="pc bpc" id="L1106" title="3 of 4 branches missed.">            if (projectName == null || projectName.isEmpty()) {</span>
+<span class="fc" id="L1107">                LOGGER.warn(&quot;\n\nOne or more dependencies were identified with known vulnerabilities:\n\n{}\n\n&quot;</span>
                         + &quot;See the dependency-check report for more details.\n\n&quot;,
                         summary);
             } else {
-<span class="nc" id="L1102">                LOGGER.warn(&quot;\n\nOne or more dependencies were identified with known vulnerabilities in {}:\n\n{}\n\n&quot;</span>
+<span class="nc" id="L1111">                LOGGER.warn(&quot;\n\nOne or more dependencies were identified with known vulnerabilities in {}:\n\n{}\n\n&quot;</span>
                         + &quot;See the dependency-check report for more details.\n\n&quot;,
                         projectName,
                         summary);
             }
         }
-<span class="fc" id="L1108">    }</span>
+<span class="fc" id="L1117">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
