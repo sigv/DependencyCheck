@@ -2244,3 +2244,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:composer/phpunit/php-invoker@.*$</packageUrl>
    <cpe>cpe:/a:phpunit_project:phpunit</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7582
+   ]]></notes>
+   <packageUrl regex="true">^pkg:composer/phpunit/php-text-template@.*$</packageUrl>
+   <cpe>cpe:/a:phpunit_project:phpunit</cpe>
+</suppress>
