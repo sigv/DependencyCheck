@@ -2287,3 +2287,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:nuget/Microsoft\.AspNet\.TelemetryCorrelation@.*$</packageUrl>
    <cpe>cpe:/a:microsoft:asp.net</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #5836
+   ]]></notes>
+   <packageUrl regex="true">^pkg:nuget/Akka\.Cluster\.Hosting@.*$</packageUrl>
+   <cpe>cpe:/a:akka:akka</cpe>
+</suppress>
