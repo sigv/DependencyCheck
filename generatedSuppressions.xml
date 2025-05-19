@@ -2258,3 +2258,11 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:composer/spatie/laravel-.*$</packageUrl>
    <cpe>cpe:/a:laravel:laravel</cpe>
 </suppress>
+
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7644
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.opensearch\.plugin/transport-netty4-client@.*$</packageUrl>
+   <cpe>cpe:/a:netty:netty</cpe>
+</suppress>
