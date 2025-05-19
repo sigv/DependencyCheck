@@ -2280,3 +2280,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/com\.oracle\.database\.nls/orai18n@.*$</packageUrl>
    <cpe>cpe:/a:oracle:text</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #4260
+   ]]></notes>
+   <packageUrl regex="true">^pkg:nuget/Microsoft\.AspNet\.TelemetryCorrelation@.*$</packageUrl>
+   <cpe>cpe:/a:microsoft:asp.net</cpe>
+</suppress>
