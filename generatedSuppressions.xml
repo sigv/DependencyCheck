@@ -2301,3 +2301,10 @@ only pkg:maven/org.clojure:clojure@.* is the CPE cpe:/a:clojure:clojure
    <packageUrl regex="true">^pkg:maven/org\.eclipse\.core/org\.eclipse\.core\.jobs@.*$</packageUrl>
    <cpe>cpe:/a:jobs-plugin_project:jobs-plugin</cpe>
 </suppress>
+<suppress base="true">
+   <notes><![CDATA[
+   FP per issue #7649
+   ]]></notes>
+   <packageUrl regex="true">^pkg:maven/org\.eclipse\.core/org\.eclipse\.core\.commands@.*$</packageUrl>
+   <cpe>cpe:/a:eclipse:equinox</cpe>
+</suppress>
